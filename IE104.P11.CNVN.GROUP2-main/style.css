@@ -1,3 +1,73 @@
+.btn-auth {
+    text-decoration: none;
+    padding: 8px 24px;
+    border-radius: 50px; 
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    color: #555;
+    background: transparent;
+}
+.btn-login:hover {
+    color: #000;
+}
+
+.btn-register {
+    background: linear-gradient(45deg, #ff00cc, #333399);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.btn-register:hover {
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+.site-branding-area1 {
+    max-width: 1200px;
+    padding: 5px 0;
+}
+
+
+.container1 {
+    width: 100%;
+    display: flex;
+    margin-left: 130px;
+}
+.row1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:20px
+}
+
+.logo1
+{
+  width: 100px;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left:30px;
+}
+ .search input{
+     border-radius: 20px;
+     width:500px
+ }
+
+.search button {
+    margin-left: 10px;
+    border-radius: 20px;
+    width: 70px;
+    height:40px
+}
+
+.cart{
+    margin-left: 30px;
+}
 .floatleft { float: left }
 .floatright { float: right }
 .alignleft {
@@ -1122,4 +1192,5 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 
 .pagination > li > a, .pagination > li > span {
   color: #ee5057;
+
 }
