@@ -2,7 +2,7 @@
 RewriteEngine On
 
 # Sửa lại Base URL, quan trọng khi dự án nằm trong thư mục con
-RewriteBase /DACS2/IE104.P11.CNVN.GROUP2-main/
+RewriteBase /DACS2/Web/
 
 # 1. Bỏ qua các file hoặc thư mục tồn tại
 RewriteCond %{REQUEST_FILENAME} !-f

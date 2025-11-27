@@ -105,7 +105,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active">
                         <a href="home">Home</a></li>
-                        <li><a href="shoppage">Shop page</a></li>
+                        <li><a href="tungdubai">Shop page</a></li>
                         <li><a href="single-product.html">Product</a></li>
                         <li><a href="cart.html">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>

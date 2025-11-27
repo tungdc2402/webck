@@ -18,7 +18,7 @@ class productsController {
         $action = $_GET['url'] ?? 'home';
         if (empty($action) || $action === 'home') {
             $this->home();
-        } elseif ($action === 'shoppage') {
+        } elseif ($action === 'tungdubai') {
             $this->shopPage();
         } else {
             $this->home();
