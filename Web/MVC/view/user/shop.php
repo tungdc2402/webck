@@ -14,10 +14,9 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <base href="/DACS2/Web/">
+    <base href="/DACS2/Web/MVC/">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <base href="/DACS2 - Copy/IE104.P11.CNVN.GROUP2-main/">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="style.css">

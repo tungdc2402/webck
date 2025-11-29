@@ -13,13 +13,13 @@ class productsController
     public function shopPage()
     {
         $products = $this->proController->getAllProducts();
-        include(__DIR__ . "/../../view/user/shop.php");
+        require_once (__DIR__ . "/../../view/user/shop.php");
     }
 
     public function home()
     {
         $products = $this->proController->get10LatestProducts();
-        include(__DIR__ . "/../../view/user/home.php");
+        require_once __DIR__ . "/../../view/user/home.php";
     }
 
     public function search()

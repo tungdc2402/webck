@@ -36,7 +36,7 @@ class productsControllerA
         } elseif ($action === 'search') {
             $this->search();
         } else {
-            $this->shoppage();
+            $this->shopPage();
         }
     }
 

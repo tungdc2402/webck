@@ -1,0 +1,10 @@
+# .htaccess
+RewriteEngine On
+
+RewriteBase /DACS2/Web/MVC/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^admin/(.*)$ run.php?url=$1 [L,QSA]
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]

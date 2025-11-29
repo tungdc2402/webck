@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <base href="/DACS2/Web/MVC/">
 
   </head>
   <body>
