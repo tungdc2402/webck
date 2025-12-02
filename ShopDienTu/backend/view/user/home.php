@@ -1,23 +1,29 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Main menu</title>
-    <link rel="icon" type="image/png" href="../frontend/img/logo.png">
+    <title>Home</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+
+    <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../frontend/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="../frontend/css/font-awesome.min.css">
+    <base href="/DACS2/ShopDienTu/backend/">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="../frontend/css/owl.carousel.css">
     <link rel="stylesheet" href="../frontend/css/style.css">
     <link rel="stylesheet" href="../frontend/css/responsive.css">
-      <style>
-          /* 1. Container chứa các nút (Xếp dọc) */
-          .floating-contact-wrap {
+    <style>
+         /* 1. Container chứa các nút (Xếp dọc) */          .floating-contact-wrap {
               position: fixed;
               bottom: 24px;
               right: 24px;
@@ -666,7 +672,6 @@
             </div>
         </div>
     </div> <!-- End footer bottom area -->
- 	<div>.</div>
     <!-- Latest jQuery form server -->
 
     <div class="floating-contact-wrap">

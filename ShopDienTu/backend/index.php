@@ -8,8 +8,7 @@ session_start();
 
 $url = $_GET['url'] ?? 'home';
 
-$userRoutes = ['login', 'loginPost', 'register', 'registerPost', 'logout'];
-
+$userRoutes = ['login', 'loginPost', 'register', 'registerPost', 'logout','add_to_cart','cart'];
 $adminRoutes = ['admin_shop', 'admin_create', 'admin_edit', 'admin_store', 'admin_delete'];
 
 

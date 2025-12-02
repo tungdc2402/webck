@@ -17,7 +17,7 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../frontend/css/font-awesome.min.css">
-    <base href="/DACS2 - Copy/IE104.P11.CNVN.GROUP2-main/">
+    <base href="/DACS2/ShopDienTu/backend/">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../frontend/css/owl.carousel.css">
     <link rel="stylesheet" href="../frontend/css/style.css">
@@ -131,15 +131,34 @@
     echo '        <div class="col-md-3 col-sm-6">';
     echo '              <div class="single-shop-product">';
     echo '                <div class="product-upper">';
-    echo '                      <img src="../frontend/img/product-2.jpg" alt="">';
+    echo '                      <img src="img/product-2.jpg" alt="">';
     echo '                    </div>';
     echo '                    <h2><a href="single-product.html">' .$row['NameProduct']. '</a></h2>';
     echo '                    <div class="product-carousel-price">';
     echo '                        <ins>$399.00</ins> <del>$500.00</del>';
     echo '                    </div>';
     echo '                    <div class="product-option-shop">';
-    echo '                    <a class="add_to_cart_button" >Add to cart</a>';
-    echo '            </div>';
+    echo "
+    <form action='index.php?url=add_to_cart' method='POST' style='margin: 0; padding: 0; display: block;'>
+        <input type='hidden' name='product_id' value='{$row['IDProduct']}'>
+        <button type='submit' class='add_to_cart_button'
+            style='
+                border: none;
+                background: none;
+                padding: 10px 20px; /* Thêm padding để nút có kích thước */
+                cursor: pointer;
+                display: block; /* Quan trọng: Đảm bảo nút được hiển thị */
+                width: 100%; /* Giả sử nút chiếm hết chiều rộng */
+                text-align: center;
+                /* Bạn cần thêm màu nền và màu chữ ở đây để nó giống nút */
+                background-color: #5a88ca; 
+                color: #fff; 
+                font-weight: bold;
+            '>
+            Add to cart
+        </button>
+    </form>";
+    echo '                       </div>';
     echo '                </div>';
     echo '        </div>';
      }

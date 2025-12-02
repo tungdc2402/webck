@@ -1,6 +1,8 @@
 <?php
 // controller/UserController.php
 namespace controller;
+
+use controller\user\cartController;
 use UserModel;
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -8,14 +10,15 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 include(__DIR__ . "/../model/UserModel.php");
-
+include "user/cartController.php";
 class UserController
 {
     public $userModel;
-
+    public $cartController;
     public function __construct()
     {
         $this->userModel = new UserModel();
+        $this->cartController = new CartController();
     }
 
     public function loginPage()
@@ -96,6 +99,12 @@ class UserController
         $action = $_GET['url'] ?? 'home';
 
         switch ($action) {
+            case 'add_to_cart':
+                $this->cartController->addToCart();
+                break;
+            case 'cart':
+                $this->cartController->viewCart();
+                break;
             case 'login':
                 $this->loginPage();
                 break;
