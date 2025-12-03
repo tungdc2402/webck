@@ -3,6 +3,7 @@
 namespace controller;
 
 use controller\user\cartController;
+use shoppingCartsModel;
 use UserModel;
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -29,6 +30,9 @@ class UserController
     public function registerPage()
     {
         include(__DIR__ . "/../view/Register.php");
+    }
+    public function checkOut(){
+        include(__DIR__ . "/../view/user/checkout.php");
     }
 
     public function SubmitRegister()
@@ -73,6 +77,9 @@ class UserController
 
                 $role = $user['RoleUser'] ?? 0;
                 $_SESSION['RoleUser'] = $role;
+                $cartModel = new shoppingCartsModel();
+                $cartId = $cartModel->getOrCreateCart($user['IDUser']);
+                $_SESSION['IDShoppingCart'] = $cartId;
 
                 if ($role == 1) {
                     header("Location: index.php?url=admin_shop");
@@ -99,6 +106,8 @@ class UserController
         $action = $_GET['url'] ?? 'home';
 
         switch ($action) {
+            case 'checkout':
+                $this->checkOut();
             case 'add_to_cart':
                 $this->cartController->addToCart();
                 break;
@@ -126,5 +135,3 @@ class UserController
         }
     }
 }
-
-?>

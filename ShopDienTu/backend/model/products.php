@@ -1,5 +1,6 @@
 <?php
-class Product {
+class Product
+{
     public $IDProduct;
     public $NameProduct;
     public $DescriptionProduct;
@@ -9,7 +10,8 @@ class Product {
     public $ImageUrlProduct;
     public $IsActiveProduct;
 
-    public function __construct($IDProduct, $NameProduct, $DescriptionProduct, $IDCategory, $PriceProduct, $StockQuantityProduct, $ImageUrlProduct, $IsActiveProduct) {
+    public function __construct($IDProduct, $NameProduct, $DescriptionProduct, $IDCategory, $PriceProduct, $StockQuantityProduct, $ImageUrlProduct, $IsActiveProduct)
+    {
         $this->IDProduct = $IDProduct;
         $this->NameProduct = $NameProduct;
         $this->DescriptionProduct = $DescriptionProduct;
@@ -20,4 +22,3 @@ class Product {
         $this->IsActiveProduct = $IsActiveProduct;
     }
 }
-?>

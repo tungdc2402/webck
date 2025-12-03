@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +43,8 @@
             border-left: 3px solid transparent;
         }
 
-        .sidebar a:hover, .sidebar a.active {
+        .sidebar a:hover,
+        .sidebar a.active {
             color: white;
             background: #343a40;
             border-left-color: var(--primary-color);
@@ -64,7 +66,7 @@
         /* Card Styling */
         .card {
             border: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             margin-bottom: 20px;
             /* Căn chỉnh card ra giữa hoặc lệch phải tùy layout admin của bạn,
                nếu có sidebar thì bỏ margin-left hoặc set theo sidebar */
@@ -96,147 +98,166 @@
         }
 
         /* Status Badges */
-        .badge-status-processing { background-color: #0dcaf0; color: #000; }
-        .badge-status-shipping { background-color: #ffc107; color: #000; }
-        .badge-status-completed { background-color: #198754; }
-        .badge-status-cancelled { background-color: #dc3545; }
+        .badge-status-processing {
+            background-color: #0dcaf0;
+            color: #000;
+        }
+
+        .badge-status-shipping {
+            background-color: #ffc107;
+            color: #000;
+        }
+
+        .badge-status-completed {
+            background-color: #198754;
+        }
+
+        .badge-status-cancelled {
+            background-color: #dc3545;
+        }
 
         /* Tech Specs Table */
-        .spec-row { margin-bottom: 10px; }
+        .spec-row {
+            margin-bottom: 10px;
+        }
 
         /* Utility classes */
-        .hidden { display: none; }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
+
 <body>
 
-<?php
-$id = isset($isEdit) && $isEdit ? $product['IDProduct'] : '';
-$name = isset($isEdit) && $isEdit ? $product['NameProduct'] : '';
-$price = isset($isEdit) && $isEdit ? $product['PriceProduct'] : '';
-$stock = isset($isEdit) && $isEdit ? $product['StockQuantityProduct'] : '';
-$desc = isset($isEdit) && $isEdit ? $product['DescriptionProduct'] : '';
-$img = isset($isEdit) && $isEdit ? $product['ImageUrlProduct'] : '';
-$cat = isset($isEdit) && $isEdit ? $product['IDCategory'] : '';
+    <?php
+    $id = isset($isEdit) && $isEdit ? $product['IDProduct'] : '';
+    $name = isset($isEdit) && $isEdit ? $product['NameProduct'] : '';
+    $price = isset($isEdit) && $isEdit ? $product['PriceProduct'] : '';
+    $stock = isset($isEdit) && $isEdit ? $product['StockQuantityProduct'] : '';
+    $desc = isset($isEdit) && $isEdit ? $product['DescriptionProduct'] : '';
+    $img = isset($isEdit) && $isEdit ? $product['ImageUrlProduct'] : '';
+    $cat = isset($isEdit) && $isEdit ? $product['IDCategory'] : '';
 
-$title = (isset($isEdit) && $isEdit) ? "Cập nhật sản phẩm" : "Thêm sản phẩm mới";
-?>
+    $title = (isset($isEdit) && $isEdit) ? "Cập nhật sản phẩm" : "Thêm sản phẩm mới";
+    ?>
 
-<form action="index.php?url=admin_store" method="POST" enctype="multipart/form-data">
+    <form action="index.php?url=admin_store" method="POST" enctype="multipart/form-data">
 
-    <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
 
-    <div class="card" id="product-form-view">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <span class="fs-5"><?php echo $title; ?></span>
-            <a href="index.php?url=admin_shop" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left"></i> Quay lại</a>
-        </div>
-
-        <div class="card-body">
-            <ul class="nav nav-tabs mb-3" id="prodTab" role="tablist">
-                <li class="nav-item"><button class="nav-link active" type="button" data-bs-toggle="tab" data-bs-target="#info">Thông tin chung</button></li>
-                <li class="nav-item"><button class="nav-link" type="button" data-bs-toggle="tab" data-bs-target="#price">Giá & Kho</button></li>
-                <li class="nav-item"><button class="nav-link" type="button" data-bs-toggle="tab" data-bs-target="#images">Hình ảnh</button></li>
-            </ul>
-
-            <div class="tab-content" id="prodTabContent">
-                <div class="tab-pane fade show active" id="info">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Tên sản phẩm</label>
-                                <input type="text" class="form-control" name="NameProduct"
-                                       value="<?php echo htmlspecialchars($name); ?>"
-                                       placeholder="Ví dụ: iPhone 15 Pro Max" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Mô tả chi tiết</label>
-                                <textarea class="form-control" rows="8" name="DescriptionProduct"
-                                          placeholder="Nhập mô tả sản phẩm..."><?php echo htmlspecialchars($desc); ?></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Danh mục (ID)</label>
-                                <input type="number" class="form-control" name="IDCategory"
-                                       value="<?php echo $cat; ?>" placeholder="Nhập ID danh mục (VD: 1)" required>
-                                <small class="text-muted">Nhập ID của danh mục sản phẩm.</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="price">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Giá bán (VNĐ)</label>
-                            <input type="number" class="form-control" name="PriceProduct"
-                                   value="<?php echo $price; ?>" placeholder="VD: 25000000" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Số lượng tồn kho</label>
-                            <input type="number" class="form-control" name="StockQuantityProduct"
-                                   value="<?php echo $stock; ?>" placeholder="VD: 100" required>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="images">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label class="form-label fw-bold">Ảnh sản phẩm</label>
-                            <div class="image-upload-box" onclick="document.getElementById('fileInput').click()">
-                                <i class="fas fa-cloud-upload-alt fa-3x text-muted"></i>
-                                <p class="mt-2">Click để chọn ảnh mới (Nếu muốn thay đổi)</p>
-                                <input type="file" name="image" class="d-none" id="fileInput" onchange="previewImage(this)">
-                            </div>
-
-                            <div class="mt-3">
-                                <p class="mb-1 fw-bold">Ảnh hiện tại/Xem trước:</p>
-                                <?php if($img != ""): ?>
-                                    <img id="preview" src="img/<?php echo $img; ?>" class="img-thumbnail" style="max-height: 200px;">
-                                <?php else: ?>
-                                    <img id="preview" src="https://via.placeholder.com/150?text=No+Image" class="img-thumbnail" style="max-height: 200px;">
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="specs">
-                    <p class="text-muted">Chức năng đang cập nhật (Cần tạo thêm bảng TechSpecs trong Database)...</p>
-                    <div id="spec-container">
-                        <div class="row spec-row">
-                            <div class="col-4"><input type="text" class="form-control" placeholder="Tên thông số (VD: RAM)" disabled></div>
-                            <div class="col-7"><input type="text" class="form-control" placeholder="Giá trị (VD: 8GB)" disabled></div>
-                        </div>
-                    </div>
-                </div>
+        <div class="card" id="product-form-view">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span class="fs-5"><?php echo $title; ?></span>
+                <a href="index.php?url=admin_shop" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left"></i> Quay lại</a>
             </div>
 
-            <div class="mt-4 border-top pt-3 text-end">
-                <a href="run.php?url=shoppage" class="btn btn-secondary me-2">Hủy bỏ</a>
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Lưu sản phẩm
-                </button>
+            <div class="card-body">
+                <ul class="nav nav-tabs mb-3" id="prodTab" role="tablist">
+                    <li class="nav-item"><button class="nav-link active" type="button" data-bs-toggle="tab" data-bs-target="#info">Thông tin chung</button></li>
+                    <li class="nav-item"><button class="nav-link" type="button" data-bs-toggle="tab" data-bs-target="#price">Giá & Kho</button></li>
+                    <li class="nav-item"><button class="nav-link" type="button" data-bs-toggle="tab" data-bs-target="#images">Hình ảnh</button></li>
+                </ul>
+
+                <div class="tab-content" id="prodTabContent">
+                    <div class="tab-pane fade show active" id="info">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Tên sản phẩm</label>
+                                    <input type="text" class="form-control" name="NameProduct"
+                                        value="<?php echo htmlspecialchars($name); ?>"
+                                        placeholder="Ví dụ: iPhone 15 Pro Max" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Mô tả chi tiết</label>
+                                    <textarea class="form-control" rows="8" name="DescriptionProduct"
+                                        placeholder="Nhập mô tả sản phẩm..."><?php echo htmlspecialchars($desc); ?></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Danh mục (ID)</label>
+                                    <input type="number" class="form-control" name="IDCategory"
+                                        value="<?php echo $cat; ?>" placeholder="Nhập ID danh mục (VD: 1)" required>
+                                    <small class="text-muted">Nhập ID của danh mục sản phẩm.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="price">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Giá bán (VNĐ)</label>
+                                <input type="number" class="form-control" name="PriceProduct"
+                                    value="<?php echo $price; ?>" placeholder="VD: 25000000" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Số lượng tồn kho</label>
+                                <input type="number" class="form-control" name="StockQuantityProduct"
+                                    value="<?php echo $stock; ?>" placeholder="VD: 100" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="images">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="form-label fw-bold">Ảnh sản phẩm</label>
+                                <div class="image-upload-box" onclick="document.getElementById('fileInput').click()">
+                                    <i class="fas fa-cloud-upload-alt fa-3x text-muted"></i>
+                                    <p class="mt-2">Click để chọn ảnh mới (Nếu muốn thay đổi)</p>
+                                    <input type="file" name="image" class="d-none" id="fileInput" onchange="previewImage(this)">
+                                </div>
+
+                                <div class="mt-3">
+                                    <p class="mb-1 fw-bold">Ảnh hiện tại/Xem trước:</p>
+                                    <?php if ($img != ""): ?>
+                                        <img id="preview" src="img/<?php echo $img; ?>" class="img-thumbnail" style="max-height: 200px;">
+                                    <?php else: ?>
+                                        <img id="preview" src="https://via.placeholder.com/150?text=No+Image" class="img-thumbnail" style="max-height: 200px;">
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="specs">
+                        <p class="text-muted">Chức năng đang cập nhật (Cần tạo thêm bảng TechSpecs trong Database)...</p>
+                        <div id="spec-container">
+                            <div class="row spec-row">
+                                <div class="col-4"><input type="text" class="form-control" placeholder="Tên thông số (VD: RAM)" disabled></div>
+                                <div class="col-7"><input type="text" class="form-control" placeholder="Giá trị (VD: 8GB)" disabled></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 border-top pt-3 text-end">
+                    <a href="run.php?url=shoppage" class="btn btn-secondary me-2">Hủy bỏ</a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Lưu sản phẩm
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Hàm xem trước ảnh khi chọn file
-    function previewImage(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('preview').src = e.target.result;
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Hàm xem trước ảnh khi chọn file
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
-    }
-</script>
+    </script>
 
 </body>
+
 </html>

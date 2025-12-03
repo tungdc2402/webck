@@ -1,11 +1,13 @@
 <?php
-class cartItems {
+class cartItems
+{
     public $IDCartItem;
     public $IDShoppingCart;
     public $IDProduct;
     public $QuantityCartItem;
     public $CreatedAt;
-    public function __construct($IDCartItem, $IDShoppingCart, $IDProduct, $QuantityCartItem, $CreatedAt) {
+    public function __construct($IDCartItem, $IDShoppingCart, $IDProduct, $QuantityCartItem, $CreatedAt)
+    {
         $this->IDCartItem = $IDCartItem;
         $this->IDShoppingCart = $IDShoppingCart;
         $this->IDProduct = $IDProduct;
@@ -13,4 +15,3 @@ class cartItems {
         $this->CreatedAt = $CreatedAt;
     }
 }
-?>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
     <style>
         :root {
@@ -105,6 +106,7 @@
             color: #fff;
             margin-top: 10px;
         }
+
         .btn-login:hover {
             opacity: 0.9;
         }
@@ -117,11 +119,13 @@
             font-size: 0.9rem;
             text-decoration: none;
         }
+
         .register-link {
             font-size: 0.9rem;
             color: var(--text-light);
             margin-top: 20px;
         }
+
         .register-link a {
             color: var(--primary-red);
             font-weight: 500;
@@ -129,50 +133,52 @@
         }
     </style>
 </head>
+
 <body>
-<div class="login-container">
-    <h1 class="main-title">Đăng nhập</h1>
+    <div class="login-container">
+        <h1 class="main-title">Đăng nhập</h1>
 
-    <?php if(isset($error)): ?>
-        <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: left;">
-            <i class="fa-solid fa-triangle-exclamation"></i> <?php echo $error; ?>
-        </div>
-    <?php endif; ?>
-
-    <form class="login-form" action="index.php?url=loginPost" method="POST">
-        <div class="form-group">
-            <label for="phone">Số điện thoại</label>
-            <input type="tel" id="phone" name="PhoneNumberUser" placeholder="Nhập số điện thoại của bạn" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Mật khẩu</label>
-            <div class="password-wrapper">
-                <input type="password" id="password" name="PasswordHashUser" placeholder="Nhập mật khẩu của bạn" required>
-                <span class="toggle-password"><i class="fa-regular fa-eye-slash"></i></span>
+        <?php if (isset($error)): ?>
+            <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: left;">
+                <i class="fa-solid fa-triangle-exclamation"></i> <?php echo $error; ?>
             </div>
-        </div>
-        <button type="submit" class="btn-login">Đăng nhập</button>
-    </form>
+        <?php endif; ?>
 
-    <a href="#" class="forgot-password">Quên mật khẩu?</a>
+        <form class="login-form" action="index.php?url=loginPost" method="POST">
+            <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" name="PhoneNumberUser" placeholder="Nhập số điện thoại của bạn" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="PasswordHashUser" placeholder="Nhập mật khẩu của bạn" required>
+                    <span class="toggle-password"><i class="fa-regular fa-eye-slash"></i></span>
+                </div>
+            </div>
+            <button type="submit" class="btn-login">Đăng nhập</button>
+        </form>
 
-    <p class="register-link">
-        Bạn chưa có tài khoản? <a href="index.php?url=register">Đăng ký ngay</a>
-    </p>
-</div>
+        <a href="#" class="forgot-password">Quên mật khẩu?</a>
 
-<script>
-    const togglePassword = document.querySelector('.toggle-password');
-    const passwordField = document.getElementById('password');
+        <p class="register-link">
+            Bạn chưa có tài khoản? <a href="index.php?url=register">Đăng ký ngay</a>
+        </p>
+    </div>
 
-    togglePassword.addEventListener('click', function () {
-        const icon = this.querySelector('i');
-        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordField.setAttribute('type', type);
+    <script>
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordField = document.getElementById('password');
 
-        icon.classList.toggle('fa-eye-slash');
-        icon.classList.toggle('fa-eye');
-    });
-</script>
+        togglePassword.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+
+            icon.classList.toggle('fa-eye-slash');
+            icon.classList.toggle('fa-eye');
+        });
+    </script>
 </body>
+
 </html>

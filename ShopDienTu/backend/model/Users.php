@@ -1,5 +1,7 @@
 <?php
+
 namespace model;
+
 class Users
 {
     public $BirthDay;
@@ -10,7 +12,7 @@ class Users
     public $RoleUser;
 
 
-    public function __construct($n, $b, $p, $ph, $e,$r)
+    public function __construct($n, $b, $p, $ph, $e, $r)
     {
         $this->BirthDay = $n;
         $this->PasswordHashUser = $b;

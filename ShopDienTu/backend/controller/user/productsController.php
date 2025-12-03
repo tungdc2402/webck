@@ -1,6 +1,7 @@
 <?php
 
 namespace controller\user;
+
 use productsModel;
 
 include(__DIR__ . "/../../model/productsModel.php");
@@ -91,5 +92,3 @@ class productsController
         }
     }
 }
-
-?>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +43,8 @@
             border-left: 3px solid transparent;
         }
 
-        .sidebar a:hover, .sidebar a.active {
+        .sidebar a:hover,
+        .sidebar a.active {
             color: white;
             background: #343a40;
             border-left-color: var(--primary-color);
@@ -55,15 +57,17 @@
         }
     </style>
 </head>
+
 <body>
-<div class="sidebar">
-    <h4 class="text-center text-white mb-4">TECH ADMIN</h4>
-    <a href="#" class="nav-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-    <a href="#" class="nav-link"><i class="fas fa-mobile-alt"></i> Sản phẩm</a>
-    <a href="#" class="nav-link"><i class="fas fa-list"></i> Danh mục & Hãng</a>
-    <a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
-    <a href="#" class="nav-link"><i class="fas fa-users"></i> Khách hàng</a>
-    <a href="#" class="nav-link"><i class="fas fa-cog"></i> Cấu hình</a>
-</div>
+    <div class="sidebar">
+        <h4 class="text-center text-white mb-4">TECH ADMIN</h4>
+        <a href="#" class="nav-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#" class="nav-link"><i class="fas fa-mobile-alt"></i> Sản phẩm</a>
+        <a href="#" class="nav-link"><i class="fas fa-list"></i> Danh mục & Hãng</a>
+        <a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
+        <a href="#" class="nav-link"><i class="fas fa-users"></i> Khách hàng</a>
+        <a href="#" class="nav-link"><i class="fas fa-cog"></i> Cấu hình</a>
+    </div>
 </body>
+
 </html>

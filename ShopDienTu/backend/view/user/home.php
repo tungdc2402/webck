@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,189 +24,237 @@
     <link rel="stylesheet" href="../frontend/css/style.css">
     <link rel="stylesheet" href="../frontend/css/responsive.css">
     <style>
-         /* 1. Container chứa các nút (Xếp dọc) */          .floating-contact-wrap {
-              position: fixed;
-              bottom: 24px;
-              right: 24px;
-              z-index: 9999999;
-              display: flex;
-              flex-direction: column; /* Xếp dọc */
-              gap: 15px; /* Khoảng cách giữa các nút */
-          }
+        /* 1. Container chứa các nút (Xếp dọc) */
+        .floating-contact-wrap {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999999;
+            display: flex;
+            flex-direction: column;
+            /* Xếp dọc */
+            gap: 15px;
+            /* Khoảng cách giữa các nút */
+        }
 
-          /* 2. Style chung cho các nút */
-          .contact-btn {
-              width: 60px;
-              height: 60px;
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-              cursor: pointer;
-              text-decoration: none !important;
-              position: relative;
-              transition: transform 0.3s;
-          }
+        /* 2. Style chung cho các nút */
+        .contact-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            text-decoration: none !important;
+            position: relative;
+            transition: transform 0.3s;
+        }
 
-          .contact-btn:hover { transform: scale(1.1); }
+        .contact-btn:hover {
+            transform: scale(1.1);
+        }
 
-          /* Nút Zalo (Màu xanh Zalo) */
-          .btn-zalo {
-              background-color: #0068ff;
-              border: 2px solid white;
-          }
+        /* Nút Zalo (Màu xanh Zalo) */
+        .btn-zalo {
+            background-color: #0068ff;
+            border: 2px solid white;
+        }
 
-          /* Chữ Z cho icon Zalo */
-          .zalo-text {
-              color: white;
-              font-family: Arial, sans-serif;
-              font-weight: 900;
-              font-size: 32px;
-              line-height: 1;
-          }
+        /* Chữ Z cho icon Zalo */
+        .zalo-text {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-weight: 900;
+            font-size: 32px;
+            line-height: 1;
+        }
 
-          /* Nút Messenger (Màu xanh Messenger) */
-          .btn-messenger {
-              background-color: #0084ff;
-              border: 2px solid white;
-          }
+        /* Nút Messenger (Màu xanh Messenger) */
+        .btn-messenger {
+            background-color: #0084ff;
+            border: 2px solid white;
+        }
 
-          .btn-messenger svg {
-              width: 30px; height: 30px; fill: white;
-          }
+        .btn-messenger svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
 
-          /* 3. Tooltip (Chữ hiện ra bên cạnh) */
-          .contact-tooltip {
-              position: absolute;
-              right: 70px;
-              top: 15px;
-              background: #333;
-              padding: 5px 12px;
-              border-radius: 5px;
-              font-size: 13px;
-              color: white;
-              white-space: nowrap;
-              opacity: 0; visibility: hidden;
-              transition: 0.3s;
-              font-family: Arial, sans-serif;
-          }
+        /* 3. Tooltip (Chữ hiện ra bên cạnh) */
+        .contact-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 15px;
+            background: #333;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 13px;
+            color: white;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            font-family: Arial, sans-serif;
+        }
 
-          /* Mũi tên tooltip */
-          .contact-tooltip::after {
-              content: ''; position: absolute; right: -6px; top: 50%;
-              transform: translateY(-50%);
-              border-left: 6px solid #333; border-top: 6px solid transparent; border-bottom: 6px solid transparent;
-          }
+        /* Mũi tên tooltip */
+        .contact-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 6px solid #333;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
 
-          .contact-btn:hover .contact-tooltip { opacity: 1; visibility: visible; right: 75px; }
+        .contact-btn:hover .contact-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 75px;
+        }
 
-          /* 4. Hiệu ứng rung lắc cho nút Zalo để gây chú ý */
-          .btn-zalo { animation: quick-alo-circle-img-anim 1s infinite ease-in-out; }
+        /* 4. Hiệu ứng rung lắc cho nút Zalo để gây chú ý */
+        .btn-zalo {
+            animation: quick-alo-circle-img-anim 1s infinite ease-in-out;
+        }
 
-          @keyframes quick-alo-circle-img-anim {
-              0% {transform: rotate(0) scale(1) skew(1deg);}
-              10% {transform: rotate(-25deg) scale(1) skew(1deg);}
-              20% {transform: rotate(25deg) scale(1) skew(1deg);}
-              30% {transform: rotate(-25deg) scale(1) skew(1deg);}
-              40% {transform: rotate(25deg) scale(1) skew(1deg);}
-              50% {transform: rotate(0) scale(1) skew(1deg);}
-              100% {transform: rotate(0) scale(1) skew(1deg);}
-          }
+        @keyframes quick-alo-circle-img-anim {
+            0% {
+                transform: rotate(0) scale(1) skew(1deg);
+            }
 
-          /* Badge giảm giá đỏ nổi góc phải trên cùng (chuẩn Shopee) */
-          .product-badge {
-              position: absolute;
-              top: 10px;
-              right: 10px;
-              background: #ee4d2d;
-              color: white;
-              font-size: 14px;
-              font-weight: bold;
-              padding: 4px 8px;
-              border-radius: 4px;
-              z-index: 10;
-              box-shadow: 0 2px 8px rgba(238,77,45,0.4);
-              border: 2px solid white;
-          }
+            10% {
+                transform: rotate(-25deg) scale(1) skew(1deg);
+            }
 
-          /* Giá mới + giá cũ */
-          .product-carousel-price {
-              margin: 12px 0;
-              line-height: 1.4;
-          }
+            20% {
+                transform: rotate(25deg) scale(1) skew(1deg);
+            }
 
-          .product-carousel-price ins {
-              color: #ee4d2d;
-              font-size: 20px;
-              font-weight: bold;
-              text-decoration: none;
-          }
+            30% {
+                transform: rotate(-25deg) scale(1) skew(1deg);
+            }
 
-          .product-carousel-price del {
-              color: #999;
-              font-size: 14px;
-              margin-left: 8px;
-          }
+            40% {
+                transform: rotate(25deg) scale(1) skew(1deg);
+            }
+
+            50% {
+                transform: rotate(0) scale(1) skew(1deg);
+            }
+
+            100% {
+                transform: rotate(0) scale(1) skew(1deg);
+            }
+        }
+
+        /* Badge giảm giá đỏ nổi góc phải trên cùng (chuẩn Shopee) */
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ee4d2d;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(238, 77, 45, 0.4);
+            border: 2px solid white;
+        }
+
+        /* Giá mới + giá cũ */
+        .product-carousel-price {
+            margin: 12px 0;
+            line-height: 1.4;
+        }
+
+        .product-carousel-price ins {
+            color: #ee4d2d;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .product-carousel-price del {
+            color: #999;
+            font-size: 14px;
+            margin-left: 8px;
+        }
 
 
-          .onsale{
-             background:#0dcaf0;
-             font-size:20px;
-          }
+        .onsale {
+            background: #0dcaf0;
+            font-size: 20px;
+        }
 
-          .product-category-area {
-              padding-bottom: 50px; /* Tạo khoảng cách với phần dưới */
-              padding-top: 20px;
-          }
+        .product-category-area {
+            padding-bottom: 50px;
+            /* Tạo khoảng cách với phần dưới */
+            padding-top: 20px;
+        }
 
-          /* Khung bao quanh mỗi danh mục */
-          .cat-item {
-              display: block;
-              background: #fff;
-              border: 1px solid #e1e1e1;
-              text-align: center;
-              padding: 25px 10px;
-              border-radius: 8px; /* Bo tròn nhẹ */
-              transition: all 0.3s ease;
-              text-decoration: none !important; /* Bỏ gạch chân */
-              margin-bottom: 20px;
-          }
+        /* Khung bao quanh mỗi danh mục */
+        .cat-item {
+            display: block;
+            background: #fff;
+            border: 1px solid #e1e1e1;
+            text-align: center;
+            padding: 25px 10px;
+            border-radius: 8px;
+            /* Bo tròn nhẹ */
+            transition: all 0.3s ease;
+            text-decoration: none !important;
+            /* Bỏ gạch chân */
+            margin-bottom: 20px;
+        }
 
-          /* Icon (Sử dụng FontAwesome có sẵn) */
-          .cat-item .cat-icon i {
-              font-size: 40px;
-              color: #5a88ca; /* Màu xanh chủ đạo */
-              margin-bottom: 15px;
-              transition: all 0.3s ease;
-          }
+        /* Icon (Sử dụng FontAwesome có sẵn) */
+        .cat-item .cat-icon i {
+            font-size: 40px;
+            color: #5a88ca;
+            /* Màu xanh chủ đạo */
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
 
-          /* Chữ tên danh mục */
-          .cat-item .cat-text {
-              color: #333;
-              font-weight: 600;
-              font-size: 16px;
-              text-transform: uppercase;
-          }
+        /* Chữ tên danh mục */
+        .cat-item .cat-text {
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
 
-          /* Hiệu ứng khi di chuột vào (Hover) */
-          .cat-item:hover {
-              box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Đổ bóng */
-              transform: translateY(-5px); /* Nổi lên trên */
-              border-color: #5a88ca;
-          }
+        /* Hiệu ứng khi di chuột vào (Hover) */
+        .cat-item:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            /* Đổ bóng */
+            transform: translateY(-5px);
+            /* Nổi lên trên */
+            border-color: #5a88ca;
+        }
 
-          .cat-item:hover .cat-icon i {
-              color: #ee4d2d; /* Đổi màu icon sang cam đỏ khi hover */
-              transform: scale(1.1); /* Phóng to icon một chút */
-          }
+        .cat-item:hover .cat-icon i {
+            color: #ee4d2d;
+            /* Đổi màu icon sang cam đỏ khi hover */
+            transform: scale(1.1);
+            /* Phóng to icon một chút */
+        }
 
-          .cat-item:hover .cat-text {
-              color: #ee4d2d;
-          }
-      </style>
-  </head>
-  <body>
+        .cat-item:hover .cat-text {
+            color: #ee4d2d;
+        }
+    </style>
+</head>
+
+<body>
     <div class="site-branding-area1">
         <div class="container1">
             <div class="row1">
@@ -219,7 +268,7 @@
                     <form action="index.php" method="GET" style="display: flex;">
                         <input type="hidden" name="url" value="search">
                         <input type="text" name="keyword" placeholder="Search here..." required
-                               value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>" />
+                            value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>" />
                         <button style="background-color: #5cb85c; color: white; padding: 8px 16px; border: none; border-radius: 50px;">Search</button>
                     </form>
                 </div>
@@ -232,10 +281,10 @@
                     <?php if (isset($_SESSION['user_name'])): ?>
 
                         <div class="user-info">
-                        <span style="font-weight: 600; color: #333;">
-                            <i class="fa fa-user" style="color: #d70018;"></i>
-                            Hello, <?php echo htmlspecialchars($_SESSION['user_name']); ?>
-                        </span>
+                            <span style="font-weight: 600; color: #333;">
+                                <i class="fa fa-user" style="color: #d70018;"></i>
+                                Hello, <?php echo htmlspecialchars($_SESSION['user_name']); ?>
+                            </span>
                         </div>
                         <a href="index.php?url=logout" class="btn-auth" style="background: #555; color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 14px;">
                             Đăng xuất
@@ -266,10 +315,11 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                        <a href="home">Home</a></li>
+                            <a href="home">Home</a>
+                        </li>
                         <li><a href="shoppage">Shop page</a></li>
                         <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="checkout">Checkout</a></li>
                     </ul>
                 </div>
             </div>
@@ -280,32 +330,32 @@
 
 
     <div class="slider-area">
-        	<!-- Slider -->
-			<div class="block-slider block-slider4">
-				<ul class="" id="bxslider-home4">
-					<li>
-						<a href="shop.html">
-                            <img src="../frontend/img/h4-slide.png" alt="Slide">
-                        </a>
-					</li>
-					<li>
-                        <a href="shop.html">
-                            <img src="../frontend/img/h4-slide2.png" alt="Slide">
-                        </a>
-					</li>
-					<li>
-                        <a href="shop.html">
-                            <img src="../frontend/img/h4-slide3.png" alt="Slide">
-                        </a>
-					</li>
-					<li>
-                        <a href="shop.html">
+        <!-- Slider -->
+        <div class="block-slider block-slider4">
+            <ul class="" id="bxslider-home4">
+                <li>
+                    <a href="shop.html">
+                        <img src="../frontend/img/h4-slide.png" alt="Slide">
+                    </a>
+                </li>
+                <li>
+                    <a href="shop.html">
+                        <img src="../frontend/img/h4-slide2.png" alt="Slide">
+                    </a>
+                </li>
+                <li>
+                    <a href="shop.html">
+                        <img src="../frontend/img/h4-slide3.png" alt="Slide">
+                    </a>
+                </li>
+                <li>
+                    <a href="shop.html">
                         <img src="../frontend/img/h4-slide4.png" alt="Slide">
-                        </a>
-					</li>
-				</ul>
-			</div>
-			<!-- ./Slider -->
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- ./Slider -->
     </div> <!-- End slider area -->
 
     <div class="promo-area">
@@ -339,7 +389,7 @@
             </div>
         </div>
     </div> <!-- End promo area -->
-<!-- hiển thị sản phẩm mới nhất -->
+    <!-- hiển thị sản phẩm mới nhất -->
     <!-- hiển thị sản phẩm mới nhất -->
     <div class="maincontent-area">
         <div class="zigzag-bottom"></div>
@@ -350,12 +400,12 @@
                         <h2 class="section-title">Latest Products</h2>
                         <div class="product-carousel">
 
-                            <?php while($row = mysqli_fetch_array($products)):
+                            <?php while ($row = mysqli_fetch_array($products)):
                                 // Tính giá sau giảm
                                 $gia_goc = $row['PriceProduct'];
                                 $giam    = isset($row['Discount']) ? (int)$row['Discount'] : 0;
                                 $gia_moi = $gia_goc * (100 - $giam) / 100;
-                                ?>
+                            ?>
                                 <div class="single-product">
                                     <div class="product-f-image">
                                         <img src="../frontend/img/<?php echo htmlspecialchars($row['ImageUrlProduct']); ?>" alt="">
@@ -373,11 +423,11 @@
 
                                     <div class="product-carousel-price">
                                         <ins>$<?php echo number_format($gia_moi); ?></ins>
-                                        <?php if($giam > 0): ?>
+                                        <?php if ($giam > 0): ?>
                                             <del>$<?php echo number_format($gia_goc); ?></del>
                                         <?php endif; ?>
 
-                                        <?php if($giam > 0): ?>
+                                        <?php if ($giam > 0): ?>
                                             <span class="onsale">-<?php echo $giam; ?>%</span>
                                         <?php endif; ?>
                                     </div>
@@ -627,11 +677,11 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
-                            <li><a href="shop.html">Mainboard</a></li>  <!-- filter -->
-                            <li><a href="shop.html">Card VGA </a></li>  <!-- filter -->
-                            <li><a href="shop.html">Ram</a></li>  <!-- filter -->
-                            <li><a href="shop.html">Case PC</a></li>  <!-- filter -->
-                            <li><a href="shop.html">CPU</a></li>  <!-- filter -->
+                            <li><a href="shop.html">Mainboard</a></li> <!-- filter -->
+                            <li><a href="shop.html">Card VGA </a></li> <!-- filter -->
+                            <li><a href="shop.html">Ram</a></li> <!-- filter -->
+                            <li><a href="shop.html">Case PC</a></li> <!-- filter -->
+                            <li><a href="shop.html">CPU</a></li> <!-- filter -->
                         </ul>
                     </div>
                 </div>
@@ -682,7 +732,10 @@
         </a>
 
         <a href="https://m.me/102803015947076" target="_blank" class="contact-btn btn-messenger">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.03 2 11C2 13.66 3.39 16.05 5.61 17.58L4.99 20.54C4.86 21.13 5.39 21.61 5.95 21.43L9.08 20.41C10.02 20.79 11 21 12 21C17.52 21 22 16.97 22 12C22 7.03 17.52 2 12 2ZM13.06 15.19L10.68 12.63L6.03 15.18C5.69 15.37 5.28 15 5.43 14.64L8.08 8.41C8.25 8.02 8.78 8.02 8.95 8.41L11.32 10.97L15.97 8.42C16.31 8.23 16.72 8.6 16.57 8.96L13.92 15.19C13.75 15.58 13.22 15.58 13.06 15.19Z"/></path></svg>
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.03 2 11C2 13.66 3.39 16.05 5.61 17.58L4.99 20.54C4.86 21.13 5.39 21.61 5.95 21.43L9.08 20.41C10.02 20.79 11 21 12 21C17.52 21 22 16.97 22 12C22 7.03 17.52 2 12 2ZM13.06 15.19L10.68 12.63L6.03 15.18C5.69 15.37 5.28 15 5.43 14.64L8.08 8.41C8.25 8.02 8.78 8.02 8.95 8.41L11.32 10.97L15.97 8.42C16.31 8.23 16.72 8.6 16.57 8.96L13.92 15.19C13.75 15.58 13.22 15.58 13.06 15.19Z" />
+                </path>
+            </svg>
             <div class="contact-tooltip">Chat Facebook</div>
         </a>
 
@@ -704,7 +757,7 @@
 
     <!-- Slider -->
     <script type="text/javascript" src="../frontend/js/bxslider.min.js"></script>
-	<script type="text/javascript" src="../frontend/js/script.slider.js"></script>
+    <script type="text/javascript" src="../frontend/js/script.slider.js"></script>
 </body>
 
 </html>

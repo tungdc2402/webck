@@ -1,6 +1,7 @@
 <?php
 
 namespace controller\admin;
+
 use productsModel;
 
 include(__DIR__ . "/../../model/productsModel.php");
@@ -113,7 +114,4 @@ class productsControllerA
                 break;
         }
     }
-
 }
-
-?>

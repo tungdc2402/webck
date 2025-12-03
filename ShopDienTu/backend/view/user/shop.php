@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,8 +24,9 @@
     <link rel="stylesheet" href="../frontend/css/style.css">
     <link rel="stylesheet" href="../frontend/css/responsive.css">
 
-  </head>
-  <body>
+</head>
+
+<body>
 
     <div class="header-area">
         <div class="container">
@@ -126,19 +128,18 @@
     echo '        <div class="row"> ';
     ?>
     <?php
-    while($row= mysqli_fetch_array($products))
-    {
-    echo '        <div class="col-md-3 col-sm-6">';
-    echo '              <div class="single-shop-product">';
-    echo '                <div class="product-upper">';
-    echo '                      <img src="img/product-2.jpg" alt="">';
-    echo '                    </div>';
-    echo '                    <h2><a href="single-product.html">' .$row['NameProduct']. '</a></h2>';
-    echo '                    <div class="product-carousel-price">';
-    echo '                        <ins>$399.00</ins> <del>$500.00</del>';
-    echo '                    </div>';
-    echo '                    <div class="product-option-shop">';
-    echo "
+    while ($row = mysqli_fetch_array($products)) {
+        echo '        <div class="col-md-3 col-sm-6">';
+        echo '              <div class="single-shop-product">';
+        echo '                <div class="product-upper">';
+        echo '                      <img src="img/product-2.jpg" alt="">';
+        echo '                    </div>';
+        echo '                    <h2><a href="single-product.html">' . $row['NameProduct'] . '</a></h2>';
+        echo '                    <div class="product-carousel-price">';
+        echo '                        <ins>$399.00</ins> <del>$500.00</del>';
+        echo '                    </div>';
+        echo '                    <div class="product-option-shop">';
+        echo "
     <form action='index.php?url=add_to_cart' method='POST' style='margin: 0; padding: 0; display: block;'>
         <input type='hidden' name='product_id' value='{$row['IDProduct']}'>
         <button type='submit' class='add_to_cart_button'
@@ -158,10 +159,10 @@
             Add to cart
         </button>
     </form>";
-    echo '                       </div>';
-    echo '                </div>';
-    echo '        </div>';
-     }
+        echo '                       </div>';
+        echo '                </div>';
+        echo '        </div>';
+    }
     ?>
     <?php
     echo '            <!-- bocodelai o day -->';
@@ -206,11 +207,11 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
-                            <li><a href="shop.html">Mainboard</a></li>  <!-- filter -->
-                            <li><a href="shop.html">Card VGA </a></li>  <!-- filter -->
-                            <li><a href="shop.html">Ram</a></li>  <!-- filter -->
-                            <li><a href="shop.html">Case PC</a></li>  <!-- filter -->
-                            <li><a href="shop.html">CPU</a></li>  <!-- filter -->
+                            <li><a href="shop.html">Mainboard</a></li> <!-- filter -->
+                            <li><a href="shop.html">Card VGA </a></li> <!-- filter -->
+                            <li><a href="shop.html">Ram</a></li> <!-- filter -->
+                            <li><a href="shop.html">Case PC</a></li> <!-- filter -->
+                            <li><a href="shop.html">CPU</a></li> <!-- filter -->
                         </ul>
                     </div>
                 </div>
@@ -267,5 +268,6 @@
 
     <!-- Main Script -->
     <script src="../frontend/js/main.js"></script>
-  </body>
+</body>
+
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,14 +18,14 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../frontend/css/font-awesome.min.css">
-    <base href="/DACS2/ShopDienTu/backend/">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../frontend/css/owl.carousel.css">
     <link rel="stylesheet" href="../frontend/css/style.css">
     <link rel="stylesheet" href="../frontend/css/responsive.css">
 
-  </head>
-    <body>
+</head>
+
+<body>
     <div class="header-area">
         <div class="container">
             <div class="row">
@@ -38,7 +39,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
@@ -63,7 +64,7 @@
             </div>
         </div>
     </div> <!-- End header area -->
-    
+
     <div class="site-branding-area">
         <div class="container">
             <div class="row">
@@ -81,7 +82,7 @@
             </div>
         </div>
     </div> <!-- End site branding area -->
-    
+
     <div class="mainmenu-area">
         <div class="container">
             <div class="row">
@@ -92,7 +93,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                </div> 
+                </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li>
@@ -101,11 +102,11 @@
                         <li class="active"><a href="cart.html">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
                     </ul>
-                </div>  
+                </div>
             </div>
         </div>
     </div> <!-- End mainmenu area -->
-    
+
     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
@@ -127,14 +128,14 @@
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Search Products</h2>
                         <form action="index.php" method="GET" style="display: flex; flex-direction: column;">
-                        <input type="hidden" name="url" value="search">
-                        <div>
-                            <input type="text" name="keyword" placeholder="Search here..." required 
-                            value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : ''; ?>" />
-                        </div>
-                        <div>
-                            <input type="submit" value="Search">
-                        </div>
+                            <input type="hidden" name="url" value="search">
+                            <div>
+                                <input type="text" name="keyword" placeholder="Search here..." required
+                                    value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : ''; ?>" />
+                            </div>
+                            <div>
+                                <input type="submit" value="Search">
+                            </div>
                         </form>
                     </div>
                     <div class="single-sidebar">
@@ -168,7 +169,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
                         <ul>
@@ -180,7 +181,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
@@ -205,7 +206,7 @@
                                             <?php foreach ($cartItems as $item): ?>
                                                 <tr class="cart_item">
                                                     <td class="product-remove">
-                                                        <a title="Remove this item" class="remove" href="index.php?url=cart&remove=<?php echo $item['IDProduct']; ?>" onclick="return confirm('Xóa sản phẩm?');">×</a> 
+                                                        <a title="Remove this item" class="remove" href="index.php?url=cart&remove=<?php echo $item['IDProduct']; ?>" onclick="return confirm('Xóa sản phẩm?');">×</a>
                                                     </td>
 
                                                     <td class="product-thumbnail">
@@ -213,23 +214,34 @@
                                                     </td>
 
                                                     <td class="product-name">
-                                                        <a href="single-product.html"><?php echo htmlspecialchars($item['NameProduct']); ?></a> 
+                                                        <a href="single-product.html"><?php echo htmlspecialchars($item['NameProduct']); ?></a>
                                                     </td>
 
                                                     <td class="product-price">
-                                                        <span class="amount">$<?php echo number_format($item['PriceProduct']); ?></span> 
+                                                        <span class="amount">$<?php echo number_format($item['PriceProduct']); ?></span>
                                                     </td>
 
                                                     <td class="product-quantity">
-                                                        <div class="quantity buttons_added">
-                                                            <input type="button" class="minus" value="-">
-                                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="<?php echo $item['QuantityCartItem']; ?>" min="0" step="1">
-                                                            <input type="button" class="plus" value="+">
+                                                        <div class="quantity buttons_added" style="display: inline-flex; align-items: center; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                                                            <button type="button" class="minus btn-qty" data-id="<?php echo $item['IDProduct']; ?>"
+                                                                style="background:#e74c3c; color:white; border:none; width:36px; height:40px; font-size:18px;">−</button>
+
+                                                            <input type="number"
+                                                                name="qty[<?php echo $item['IDProduct']; ?>]"
+                                                                class="input-text qty text qty-input"
+                                                                value="<?php echo $item['QuantityCartItem']; ?>"
+                                                                min="1"
+                                                                data-id="<?php echo $item['IDProduct']; ?>"
+                                                                style="width:60px; text-align:center; border:none; height:40px; font-size:16px;"
+                                                                readonly>
+
+                                                            <button type="button" class="plus btn-qty" data-id="<?php echo $item['IDProduct']; ?>"
+                                                                style="background:#27ae60; color:white; border:none; width:36px; height:40px; font-size:18px;">+</button>
                                                         </div>
                                                     </td>
 
                                                     <td class="product-subtotal">
-                                                        <span class="amount">$<?php echo number_format($item['PriceProduct'] * $item['QuantityCartItem']); ?></span> 
+                                                        <span class="amount">$<?php echo number_format($item['PriceProduct'] * $item['QuantityCartItem']); ?></span>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -242,28 +254,25 @@
                                                     <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
                                                 </div> -->
                                                 <!-- Bọc trong form để tất cả nút đều submit được submit -->
-                                                    <div style="margin-top: 20px; text-align: right;">
-                                                        <input type="submit" value="Update Cart" name="update_cart" class="button">
-                                                        <a href="index.php?url=cart&clear_cart=1"
+                                                <div style="margin-top: 20px; text-align: right;">
+                                                    <button type="submit" name="update_cart" class="button"
+                                                        formaction="index.php?url=shoppage">
+                                                        Tiếp tục mua sắm </button>
+                                                    <button type="submit" name="update_cart" class="button"
+                                                        formaction="index.php?url=cart&clear_cart=1"
+                                                        onclick="return confirm('Xóa toàn bộ giỏ hàng?')">
+                                                        Xóa toàn bộ giỏ hàng
+                                                    </button>
+                                                    <input type="submit"
+                                                        value="Checkout →"
                                                         name="proceed_to_checkout"
-                                                        style="background: none repeat scroll 0 0 #1BD172;
-                                                        text-decoration:none;
-                                                        border: medium none;
-                                                        color: #fff;
-                                                        padding: 13px 20px;
-                                                        text-transform: uppercase;"
-                                                        class="checkout-button button alt wc-forward"
-                                                        onclick="return confirm('Xóa toàn bộ giỏ hàng?')">Xóa giỏ hàng</a>
-                                                        <input type="submit"
-                                                            value="Checkout →"
-                                                            name="proceed_to_checkout"
-                                                            class="checkout-button button alt wc-forward">
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                        class="checkout-button button alt wc-forward">
+                                                </div>
+                            </form>
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
                             </form>
 
                             <div class="cart-collaterals">
@@ -337,7 +346,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">User Navigation </h2>
@@ -347,23 +356,23 @@
                             <li><a href="#">Wishlist</a></li> <!-- filter -->
                             <li><a href="#">Vendor contact</a></li> <!-- filter -->
                             <li><a href="index.html">Home page</a></li> <!-- filter -->
-                        </ul>                        
+                        </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categories</h2>
                         <ul>
-                            <li><a href="shop.html">Mainboard</a></li>  <!-- filter -->
-                            <li><a href="shop.html">Card VGA </a></li>  <!-- filter -->
-                            <li><a href="shop.html">Ram</a></li>  <!-- filter -->
-                            <li><a href="shop.html">Case PC</a></li>  <!-- filter -->
-                            <li><a href="shop.html">CPU</a></li>  <!-- filter -->
-                        </ul>                        
+                            <li><a href="shop.html">Mainboard</a></li> <!-- filter -->
+                            <li><a href="shop.html">Card VGA </a></li> <!-- filter -->
+                            <li><a href="shop.html">Ram</a></li> <!-- filter -->
+                            <li><a href="shop.html">Case PC</a></li> <!-- filter -->
+                            <li><a href="shop.html">CPU</a></li> <!-- filter -->
+                        </ul>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-feedback">
                         <h2 class="footer-wid-title">Feedback</h2>
@@ -378,8 +387,8 @@
                 </div>
             </div>
         </div>
-    </div> 
-    
+    </div>
+
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
@@ -388,7 +397,7 @@
                         <p>&copy; 2024 IE104. All Rights Reserved. </p>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4">
                     <div class="footer-card-icon">
                         <i class="fa fa-cc-discover"></i>
@@ -399,22 +408,77 @@
                 </div>
             </div>
         </div>
-    </div> 
-   
+    </div>
+
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
-    
+
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    
+
     <!-- jQuery sticky menu -->
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.sticky.js"></script>
-    
+
     <!-- jQuery easing -->
     <script src="js/jquery.easing.1.3.min.js"></script>
-    
+
     <!-- Main Script -->
     <script src="js/main.js"></script>
-  </body>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.btn-qty', function(e) {
+                e.preventDefault();
+
+                var $button = $(this);
+                var $input = $button.closest('.quantity').find('.qty-input');
+                var IDProduct = $input.data('id'); // Giả sử bạn đã sửa data-id
+                var oldValue = parseInt($input.val(), 10) || 1;
+                var newVal = $button.hasClass('plus') ? oldValue + 1 : Math.max(1, oldValue - 1);
+
+                if (!IDProduct) {
+                    console.error('Missing IDProduct!');
+                    return;
+                }
+
+                console.log('Updating:', {
+                    IDProduct,
+                    oldValue,
+                    newVal
+                });
+
+                $input.val(newVal);
+
+                $.ajax({
+                    url: 'ajax/updateQuantity.php',
+                    method: 'POST',
+                    data: {
+                        IDProduct: IDProduct,
+                        quantity: newVal
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        console.log('Success response:', res);
+                        if (res.success) {
+                            location.reload();
+                        } else {
+                            alert('Cập nhật thất bại: ' + (res.message || 'Unknown error'));
+                            $input.val(oldValue);
+                        }
+                    },
+                    error: function(xhr, status, err) {
+                        console.error('AJAX Error:', {
+                            status,
+                            err,
+                            response: xhr.responseText
+                        }); // Debug chi tiết
+                        alert('Lỗi kết nối server: ' + status + ' - ' + err);
+                        $input.val(oldValue);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
 </html>

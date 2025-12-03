@@ -1,14 +1,17 @@
 <?php
 include("connect.php");
-class productsModel {
-    public function getAllProducts(){
+class productsModel
+{
+    public function getAllProducts()
+    {
         include("connect.php");
         $sql = "SELECT * FROM products";
         $result = mysqli_query($conn, $sql);
         return $result;
     }
 
-    public function get10LatestProducts(){
+    public function get10LatestProducts()
+    {
         include("connect.php");
         $sql = "SELECT * FROM products
         ORDER BY IDProduct
@@ -17,7 +20,8 @@ class productsModel {
         return $result;
     }
 
-    public function searchProducts($keyword){
+    public function searchProducts($keyword)
+    {
         include("connect.php");
         $safe_keyword = mysqli_real_escape_string($conn, $keyword);
         $sql = "SELECT * FROM products WHERE NameProduct LIKE '%$safe_keyword%'";
@@ -25,7 +29,8 @@ class productsModel {
         return $result;
     }
 
-    public function getProductById($id) {
+    public function getProductById($id)
+    {
         include("connect.php");
         $id = mysqli_real_escape_string($conn, $id);
         $sql = "SELECT * FROM products WHERE IDProduct = '$id'";
@@ -33,14 +38,16 @@ class productsModel {
         return mysqli_fetch_array($result);
     }
 
-    public function insertProduct($name, $price, $stock, $desc, $image, $category) {
+    public function insertProduct($name, $price, $stock, $desc, $image, $category)
+    {
         include("connect.php");
         $sql = "INSERT INTO products (NameProduct, PriceProduct, StockQuantityProduct, DescriptionProduct, ImageUrlProduct, IDCategory) 
                 VALUES ('$name', '$price', '$stock', '$desc', '$image', '$category')";
         return mysqli_query($conn, $sql);
     }
 
-    public function updateProduct($id, $name, $price, $stock, $desc, $image, $category) {
+    public function updateProduct($id, $name, $price, $stock, $desc, $image, $category)
+    {
         include("connect.php");
         if ($image != "") {
             $sql = "UPDATE products SET 
@@ -56,13 +63,15 @@ class productsModel {
         return mysqli_query($conn, $sql);
     }
 
-    public function deleteProduct($id) {
+    public function deleteProduct($id)
+    {
         include("connect.php");
         $sql = "DELETE FROM products WHERE IDProduct = '$id'";
         return mysqli_query($conn, $sql);
     }
 
-    public function getReviewsByProductId($id) {
+    public function getReviewsByProductId($id)
+    {
         include("connect.php");
         $id = mysqli_real_escape_string($conn, $id);
         $sql = "SELECT * FROM reviews WHERE IDProduct = '$id' ORDER BY IDReview DESC";
@@ -70,7 +79,8 @@ class productsModel {
         return $result;
     }
 
-    public function insertReview($idProduct, $name, $email, $rating, $content) {
+    public function insertReview($idProduct, $name, $email, $rating, $content)
+    {
         include("connect.php");
         $idProduct = mysqli_real_escape_string($conn, $idProduct);
         $name = mysqli_real_escape_string($conn, $name);
@@ -83,4 +93,3 @@ class productsModel {
         return mysqli_query($conn, $sql);
     }
 }
-?>
