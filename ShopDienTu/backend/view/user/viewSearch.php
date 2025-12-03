@@ -53,7 +53,7 @@
                     }
                 } else {
                     echo '<div class="col-md-12 text-center" style="padding: 50px 0;">';
-                    echo '<h3>Rất tiếc, không tìm thấy sản phẩm nào phù hợp.</h3>';
+                    echo '<h3>Rất tiếc, không tìm thấy sản phẩm nào phù hợp haha.</h3>';
                     echo '<p>Hãy thử tìm với từ khóa khác xem sao?</p>';
                     echo '<a href="index.php" class="btn btn-primary">Quay về trang chủ</a>';
                     echo '</div>';
