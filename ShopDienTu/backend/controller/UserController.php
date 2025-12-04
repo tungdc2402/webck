@@ -1,5 +1,4 @@
 <?php
-// controller/UserController.php
 namespace controller;
 
 use controller\user\cartController;
@@ -31,7 +30,23 @@ class UserController
     {
         include(__DIR__ . "/../view/Register.php");
     }
-    public function checkOut(){
+    public function checkOut()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?url=login");
+            exit();
+        }
+
+        $userId = $_SESSION['user_id'];
+        $cartData = $this->cartController->getFullCart($userId);
+        if (empty($cartData['items'])) {
+            header("Location: index.php?url=cart");
+            exit();
+        }
+        extract($cartData);                    // Tự động tạo: $items, $subtotal, $vat, $orderTotal, $totalItems, $IDShoppingCart
+        $cartItems = $items;                   // Vì view đang dùng $cartItems
+        // ==================================================
+
         include(__DIR__ . "/../view/user/checkout.php");
     }
 

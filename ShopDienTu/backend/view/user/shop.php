@@ -98,11 +98,14 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="home">Home</a></li>
-                        <li class="active"><a href="shoppage">Shop page</a></li>
-                        <li><a href="single-product.html">Product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="home">Home</a></li>
+                                <li class="active"><a href="shoppage">Shop page</a></li>
+                                <li><a href="cart">Cart</a></li>
+                                <li><a href="checkout">Checkout</a></li>
+                            </ul>
+                        </div>
                     </ul>
                 </div>
             </div>

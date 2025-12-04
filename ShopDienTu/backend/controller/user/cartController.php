@@ -16,7 +16,7 @@ class cartController
         $this->shoppingCartsController = new shoppingCartsModel();
         $this->cartItemsController = new cartItemsModel();
     }
-    private function requireLogin()
+    public function requireLogin()
     {
         if (!isset($_SESSION['user_id'])) {
             $_SESSION['login_message'] = "Bạn cần đăng nhập để sử dụng giỏ hàng!";
@@ -25,7 +25,29 @@ class cartController
             exit();
         }
     }
+    public function getFullCart($userId)
+    {
+        $cartId = $this->shoppingCartsController->getOrCreateCart($userId);
+        $items  = $this->cartItemsController->getCartItems($cartId);
 
+        $subtotal = 0;
+        $totalItems = 0;
+        foreach ($items as $item) {
+            $subtotal   += $item['PriceProduct'] * $item['QuantityCartItem'];
+            $totalItems += $item['QuantityCartItem'];
+        }
+        $vat        = $subtotal * 0.05;
+        $orderTotal = $subtotal + $vat;
+
+        return [
+            'IDShoppingCart' => $cartId,
+            'items'          => $items,          // PHẢI LÀ 'items' – không được là 'item', 'cartItems'
+            'subtotal'       => $subtotal,       // PHẢI LÀ 'subtotal'
+            'totalItems'     => $totalItems,     // PHẢI LÀ 'totalItems'
+            'vat'            => $vat,            // PHẢI LÀ 'vat'
+            'orderTotal'     => $orderTotal      // PHẢI LÀ 'orderTotal'
+        ];
+    }
     public function addToCart()
     {
         $this->requireLogin();
@@ -94,13 +116,16 @@ class cartController
             exit();
         }
 
-        $cartItems = $this->cartItemsController->getCartItems($cartId);
-        $cartCount = $this->cartItemsController->getCartCount($cartId);
+        $cart = $this->getFullCart($userId);
 
-        $totalPrice = 0;
-        foreach ($cartItems as $item) {
-            $totalPrice += $item['PriceProduct'] * $item['QuantityCartItem'];
-        }
+        // Gán biến cho view
+        $cartItems     = $cart['items'];
+        $subtotal       = $cart['subtotal'];
+        $vat            = $cart['vat'];
+        $orderTotal     = $cart['orderTotal'];
+        $totalItems     = $cart['totalItems'];
+        $IDShoppingCart = $cart['IDShoppingCart'];
+        $cartCount      = $totalItems;  // Thay thế $cartCount cũ
         include __DIR__ . '/../../view/user/cart.php';
     }
 }

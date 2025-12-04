@@ -96,11 +96,12 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Product</a></li>
-                        <li class="active"><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
+                        <ul class="nav navbar-nav">
+                            <li><a href="home">Home</a></li>
+                            <li><a href="shoppage">Shop page</a></li>
+                            <li class="active"><a href="cart">Cart</a></li>
+                            <li><a href="checkout">Checkout</a></li>
+                        </ul>
                     </ul>
                 </div>
             </div>
@@ -266,7 +267,8 @@
                                                     <input type="submit"
                                                         value="Checkout →"
                                                         name="proceed_to_checkout"
-                                                        class="checkout-button button alt wc-forward">
+                                                        class="checkout-button button alt wc-forward"
+                                                        formaction="index.php?url=checkout">
                                                 </div>
                             </form>
                             </td>
@@ -302,22 +304,46 @@
 
                                 <div class="cart_totals ">
                                     <h2>Cart Totals</h2>
-
-                                    <table cellspacing="0">
+                                    <table cellspacing="0" class="shop_table shop_table_responsive">
                                         <tbody>
+                                            <!-- SUBTOTAL -->
                                             <tr class="cart-subtotal">
-                                                <th>Cart Subtotal</th>
-                                                <td><span class="amount">$<?php echo number_format($totalPrice); ?></span></td>
+                                                <th>Subtotal</th>
+                                                <td data-title="Subtotal">
+                                                    <span class="amount">
+                                                        $<?php echo number_format($subtotal, 2); ?>
+                                                    </span>
+                                                </td>
                                             </tr>
 
+                                            <!-- VAT 5% -->
+                                            <tr class="tax-rate tax-rate-vat-5">
+                                                <th>VAT (5%)</th>
+                                                <td data-title="VAT (5%)">
+                                                    <span class="amount">
+                                                        $<?php echo number_format($vat, 2); ?>
+                                                    </span>
+                                                </td>
+                                            </tr>
+
+                                            <!-- PHÍ SHIPPING -->
                                             <tr class="shipping">
                                                 <th>Shipping and Handling</th>
-                                                <td>Free Shipping</td>
+                                                <td data-title="Shipping">
+                                                    <span class="amount">Free Shipping</span>
+                                                </td>
                                             </tr>
 
+                                            <!-- ORDER TOTAL (TỔNG CỘNG) -->
                                             <tr class="order-total">
                                                 <th>Order Total</th>
-                                                <td><strong><span class="amount">$<?php echo number_format($totalPrice); ?></span></strong> </td>
+                                                <td data-title="Total">
+                                                    <strong>
+                                                        <span class="amount text-danger">
+                                                            $<?php echo number_format($orderTotal, 2); ?>
+                                                        </span>
+                                                    </strong>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -471,7 +497,7 @@
                             status,
                             err,
                             response: xhr.responseText
-                        }); // Debug chi tiết
+                        });
                         alert('Lỗi kết nối server: ' + status + ' - ' + err);
                         $input.val(oldValue);
                     }
