@@ -2,14 +2,17 @@
 
 namespace controller\admin;
 
+use controller\user\cartController;
+use controller\user\orderController;
 use productsModel;
 
-include(__DIR__ . "/../../model/productsModel.php");
+require_once(__DIR__ . "/../../model/productsModel.php");
+require_once(__DIR__ . "/../user/orderController.php");
 
 class productsControllerA
 {
     public $proController;
-
+    public $orderController;
     public function __construct()
     {
         if (session_status() === PHP_SESSION_NONE) {
@@ -21,6 +24,7 @@ class productsControllerA
         }
 
         $this->proController = new productsModel();
+        $this->orderController = new orderController();
     }
 
     public function shopPage()
@@ -89,11 +93,14 @@ class productsControllerA
         }
     }
 
+
     public function run()
     {
         $action = $_GET['url'] ?? 'admin_shop';
 
         switch ($action) {
+            case 'admin_orders':
+                $this->orderController->adminOrders();
             case 'admin_shop':
                 $this->shopPage();
                 break;

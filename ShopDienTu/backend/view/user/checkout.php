@@ -228,7 +228,7 @@
                                 <div class="clear"></div>
                             </form>
 
-                            <form enctype="multipart/form-data" action="" class="checkout" method="post" name="checkout">
+                            <form enctype="multipart/form-data" action="index.php?url=place_order" class="checkout" method="post" name="checkout">
 
                                 <div id="customer_details">
                                     <div class="woocommerce-billing-fields">
@@ -615,10 +615,8 @@
                                         </ul>
 
                                         <div class="form-row place-order">
-
-                                            <input type="submit" data-value="placeorder" value="Đặt hàng" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-
-
+                                            <noscript>Your browser does not support JavaScript!</noscript>
+                                            <input type="submit" data-value="Đặt hàng" value="Đặt hàng" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
                                         </div>
 
                                         <div class="clear"></div>

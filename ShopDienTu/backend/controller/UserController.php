@@ -1,7 +1,9 @@
 <?php
+
 namespace controller;
 
 use controller\user\cartController;
+use controller\user\orderController;
 use shoppingCartsModel;
 use UserModel;
 
@@ -9,26 +11,29 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include(__DIR__ . "/../model/UserModel.php");
-include "user/cartController.php";
+require_once(__DIR__ . "/../model/UserModel.php");
+require_once "user/cartController.php";
+require_once "user/orderController.php";
 class UserController
 {
     public $userModel;
     public $cartController;
+    public $orderController;
     public function __construct()
     {
         $this->userModel = new UserModel();
         $this->cartController = new CartController();
+        $this->orderController = new orderController();
     }
 
     public function loginPage()
     {
-        include(__DIR__ . "/../view/Login.php");
+        require_once(__DIR__ . "/../view/Login.php");
     }
 
     public function registerPage()
     {
-        include(__DIR__ . "/../view/Register.php");
+        require_once(__DIR__ . "/../view/Register.php");
     }
     public function checkOut()
     {
@@ -43,11 +48,16 @@ class UserController
             header("Location: index.php?url=cart");
             exit();
         }
+        // Xử lý submit form đặt hàng
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->orderController->placeOrder();
+            return;  // Ngăn include view lại sau khi xử lý
+        }
         extract($cartData);                    // Tự động tạo: $items, $subtotal, $vat, $orderTotal, $totalItems, $IDShoppingCart
         $cartItems = $items;                   // Vì view đang dùng $cartItems
         // ==================================================
 
-        include(__DIR__ . "/../view/user/checkout.php");
+        require_once(__DIR__ . "/../view/user/checkout.php");
     }
 
     public function SubmitRegister()
@@ -121,8 +131,18 @@ class UserController
         $action = $_GET['url'] ?? 'home';
 
         switch ($action) {
+            case 'my_orders':
+                $this->orderController->myOrders();
+                break;
+            case 'order_detail':
+                $this->orderController->orderDetail();
+                break;
+            case 'place_order':  // Optional, phòng trường hợp bạn muốn route riêng
+                $this->orderController->placeOrder();
+                break;
             case 'checkout':
                 $this->checkOut();
+                break;
             case 'add_to_cart':
                 $this->cartController->addToCart();
                 break;

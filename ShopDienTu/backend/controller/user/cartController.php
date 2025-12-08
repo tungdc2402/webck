@@ -5,8 +5,8 @@ namespace controller\user;
 use cartItemsModel;
 use shoppingCartsModel;
 
-include(__DIR__ . "/../../model/cartItemsModel.php");
-include(__DIR__ . "/../../model/shoppingCartsModel.php");
+require_once __DIR__ . "/../../model/cartItemsModel.php";
+require_once(__DIR__ . "/../../model/shoppingCartsModel.php");
 class cartController
 {
     public $shoppingCartsController;

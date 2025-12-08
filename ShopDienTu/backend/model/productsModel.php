@@ -92,4 +92,12 @@ class productsModel
                 VALUES ('$idProduct', '$name', '$email', '$rating', '$content')";
         return mysqli_query($conn, $sql);
     }
+    public function decreaseStock($productId, $quantity)
+    {
+        global $conn;
+        $productId = mysqli_real_escape_string($conn, $productId);
+        $quantity = mysqli_real_escape_string($conn, $quantity);
+        $sql = "UPDATE products SET QuantityProduct = QuantityProduct - $quantity WHERE IDProduct = '$productId'";
+        return mysqli_query($conn, $sql);
+    }
 }
