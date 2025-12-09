@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <?php include 'layout/header.php'; ?>
     <h2>Quản lý đơn hàng</h2>
     <table width="100%">
         <tr>

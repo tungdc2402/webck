@@ -100,4 +100,28 @@ class productsModel
         $sql = "UPDATE products SET QuantityProduct = QuantityProduct - $quantity WHERE IDProduct = '$productId'";
         return mysqli_query($conn, $sql);
     }
+    public function getAllReviews()
+    {
+        include("connect.php");
+        $sql = "SELECT r.*, p.NameProduct, p.ImageUrlProduct 
+                FROM reviews r 
+                INNER JOIN products p ON r.IDProduct = p.IDProduct 
+                ORDER BY r.IDReview DESC";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+
+    public function deleteReview($id)
+    {
+        include("connect.php");
+        $id = (int)$id;
+        $sql = "DELETE FROM reviews WHERE IDReview = '$id'";
+        return mysqli_query($conn, $sql);
+    }
+    public function getProductsByCategory($idCat){
+        include("connect.php");
+        $sql = "SELECT * FROM products WHERE IDCategory = '$idCat'";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
 }

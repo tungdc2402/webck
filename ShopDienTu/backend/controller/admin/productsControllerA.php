@@ -5,14 +5,17 @@ namespace controller\admin;
 use controller\user\cartController;
 use controller\user\orderController;
 use productsModel;
+use ordersModel;
 
 require_once(__DIR__ . "/../../model/productsModel.php");
 require_once(__DIR__ . "/../user/orderController.php");
+require_once(__DIR__ . "/../../model/ordersModel.php");
 
 class productsControllerA
 {
     public $proController;
     public $orderController;
+    public $ordersModel;
     public function __construct()
     {
         if (session_status() === PHP_SESSION_NONE) {
@@ -25,6 +28,7 @@ class productsControllerA
 
         $this->proController = new productsModel();
         $this->orderController = new orderController();
+        $this->ordersModel = new ordersModel();
     }
 
     public function shopPage()
@@ -93,6 +97,13 @@ class productsControllerA
         }
     }
 
+    public function adminOrders()
+    {
+        $orders = $this->ordersModel->getAllOrders();
+        require_once(__DIR__ . "/../../view/admin/admin_orders.php");
+        exit();
+    }
+
 
     public function run()
     {
@@ -100,7 +111,7 @@ class productsControllerA
 
         switch ($action) {
             case 'admin_orders':
-                $this->orderController->adminOrders();
+                $this->adminOrders();
             case 'admin_shop':
                 $this->shopPage();
                 break;
