@@ -49,7 +49,6 @@
                         <i class="fas fa-plus"></i> Thêm mới
                     </button>
                 </div>
-                <div style="background-color: black;"><a href="admin_orders">ok</a></div>
             </div>
 
             <div class="table-responsive">
@@ -68,7 +67,7 @@
                         <?php while ($row = mysqli_fetch_array($products)) { ?>
                             <tr>
                                 <td>
-                                    <img src="img/product-1.jpg" class="rounded product-img" alt="img">
+                                    <img src=<?php echo $row['ImageUrlProduct'] ?> class="rounded product-img" alt="img">
                                 </td>
                                 <td>
                                     <span class="fw-bold"><?php echo htmlspecialchars($row['NameProduct']); ?></span>

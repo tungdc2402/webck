@@ -10,7 +10,7 @@ session_start();
 
 $url = $_GET['url'] ?? 'home';
 
-$userRoutes = ['login', 'loginPost', 'register', 'registerPost', 'logout'];
+$userRoutes = ['login', 'loginPost', 'register', 'registerPost', 'logout','checkout'];
 $cartRoutes = ['cart', 'add_to_cart'];
 $adminRoutes = ['admin_shop', 'admin_create', 'admin_edit', 'admin_store', 'admin_delete', 'admin_category', 'admin_category_store', 'admin_category_delete','admin_reviews', 'admin_review_delete','admin_orders'];
 

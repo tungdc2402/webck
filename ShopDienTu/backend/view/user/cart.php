@@ -97,7 +97,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <ul class="nav navbar-nav">
-                            <li><a href="home">Home</a></li>
+                            <li><a href="home">Trang chủ</a></li>
                             <li><a href="shoppage">Shop page</a></li>
                             <li class="active"><a href="cart">Cart</a></li>
                             <li><a href="checkout">Checkout</a></li>
