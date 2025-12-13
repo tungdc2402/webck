@@ -3,13 +3,15 @@
 namespace controller\admin;
 
 use productsModel;
+use \controller\user\orderController;
 
 include(__DIR__ . "/../../model/productsModel.php");
+include(__DIR__ . "/../../controller/user/orderController.php");
 
 class productsControllerA
 {
     public $proController;
-
+    public $ordController;
     public function __construct()
     {
         if (session_status() === PHP_SESSION_NONE) {
@@ -19,7 +21,7 @@ class productsControllerA
             header("Location: ../../index.php?url=login");
             exit();
         }
-
+        $this->ordController = new orderController();
         $this->proController = new productsModel();
     }
 
@@ -115,6 +117,9 @@ class productsControllerA
         $action = $_GET['url'] ?? 'admin_shop';
 
         switch ($action) {
+            case 'admin_orders':
+                $this->ordController->adminOrders();
+                break;
             case 'admin_shop':
                 $this->shopPage();
                 break;
