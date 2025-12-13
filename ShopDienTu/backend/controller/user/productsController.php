@@ -59,7 +59,7 @@ class productsController
     public function submitReview()
     {
         if (!isset($_SESSION['user_name'])) {
-            header("Location: index.php?url=login");
+            header("Location: login");
             exit;
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -69,7 +69,7 @@ class productsController
             $rating = $_POST['rating'];
             $content = $_POST['review'];
             $this->proController->insertReview($idProduct, $name, $email, $rating, $content);
-            header("Location: index.php?url=detail&id=" . $idProduct);
+            header("Location: detail&id=" . $idProduct);
             exit;
         }
     }

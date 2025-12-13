@@ -2,20 +2,14 @@
 
 namespace controller\admin;
 
-use controller\user\cartController;
-use controller\user\orderController;
 use productsModel;
-use ordersModel;
 
-require_once(__DIR__ . "/../../model/productsModel.php");
-require_once(__DIR__ . "/../user/orderController.php");
-require_once(__DIR__ . "/../../model/ordersModel.php");
+include(__DIR__ . "/../../model/productsModel.php");
 
 class productsControllerA
 {
     public $proController;
-    public $orderController;
-    public $ordersModel;
+
     public function __construct()
     {
         if (session_status() === PHP_SESSION_NONE) {
@@ -27,8 +21,6 @@ class productsControllerA
         }
 
         $this->proController = new productsModel();
-        $this->orderController = new orderController();
-        $this->ordersModel = new ordersModel();
     }
 
     public function shopPage()
@@ -48,11 +40,6 @@ class productsControllerA
         }
     }
 
-    public function create()
-    {
-        $isEdit = false;
-        include(__DIR__ . "/../../view/admin/them_san_pham.php");
-    }
 
     public function edit()
     {
@@ -60,7 +47,7 @@ class productsControllerA
             $id = $_GET['id'];
             $product = $this->proController->getProductById($id);
             $isEdit = true;
-            include(__DIR__ . "/../../view/admin/them_san_pham.php");
+            include(__DIR__ . "/../../view/admin/Location: admin_shop");
         }
     }
 
@@ -72,19 +59,30 @@ class productsControllerA
             $stock = $_POST['StockQuantityProduct'];
             $desc = $_POST['DescriptionProduct'];
             $category = $_POST['IDCategory'];
-            $image = "";
-            if (isset($_FILES['image']) && $_FILES['image']['name'] != "") {
-                $target_dir = "img/";
-                $image = basename($_FILES["image"]["name"]);
-                move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir . $image);
+            $discount = $_POST['Discount'];
+
+            $image = $_POST['current_image'] ?? '';
+
+            if (!empty($_POST['image_url'])) {
+                $image = $_POST['image_url'];
             }
+            if (isset($_FILES['image']) && $_FILES['image']['name'] != "") {
+                $target_dir = "../frontend/img/";
+                $filename = time() . "_" . basename($_FILES["image"]["name"]);
+                $target_file = $target_dir . $filename;
+
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    $image = $filename;
+                }
+            }
+
             if (isset($_POST['id']) && $_POST['id'] != "") {
                 $id = $_POST['id'];
-                $this->proController->updateProduct($id, $name, $price, $stock, $desc, $image, $category);
+                $this->proController->updateProduct($id, $name, $price, $stock, $desc, $image, $category, $discount);
             } else {
-                $this->proController->insertProduct($name, $price, $stock, $desc, $image, $category);
+                $this->proController->insertProduct($name, $price, $stock, $desc, $image, $category, $discount);
             }
-            header("Location: run.php?url=shoppage");
+            header("Location: admin_shop");
         }
     }
 
@@ -93,33 +91,41 @@ class productsControllerA
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $this->proController->deleteProduct($id);
-            header("Location: run.php?url=shoppage");
+            header("Location: url=admin_shop");
         }
     }
-
-    public function adminOrders()
+    public function reviewPage()
     {
-        $orders = $this->ordersModel->getAllOrders();
-        require_once(__DIR__ . "/../../view/admin/admin_orders.php");
-        exit();
+        $reviews = $this->proController->getAllReviews();
+        include(__DIR__ . "/../../view/admin/danhgia.php");
     }
 
+    public function deleteReview()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $this->proController->deleteReview($id);
+            header("Location: url=admin_reviews");
+            exit();
+        }
+    }
 
     public function run()
     {
         $action = $_GET['url'] ?? 'admin_shop';
 
         switch ($action) {
-            case 'admin_orders':
-                $this->adminOrders();
             case 'admin_shop':
                 $this->shopPage();
                 break;
-            case 'admin_create':
-                $this->create();
-                break;
             case 'admin_edit':
                 $this->edit();
+                break;
+            case 'admin_reviews':
+                $this->reviewPage();
+                break;
+            case 'admin_review_delete':
+                $this->deleteReview();
                 break;
             case 'admin_store':
                 $this->store();

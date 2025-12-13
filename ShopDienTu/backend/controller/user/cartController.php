@@ -21,7 +21,7 @@ class cartController
         if (!isset($_SESSION['user_id'])) {
             $_SESSION['login_message'] = "Bạn cần đăng nhập để sử dụng giỏ hàng!";
             $_SESSION['redirect_after_login'] = $_GET['url'] ?? 'cart';
-            header("Location: index.php?url=login");
+            header("Location: login");
             exit();
         }
     }
@@ -59,12 +59,12 @@ class cartController
             if ($productId > 0) {
                 $this->cartItemsController->removeFromCart($cartId, $productId);
             }
-            header("Location: index.php?url=cart");
+            header("Location: cart");
             exit();
         }
         if (isset($_GET['remove']) && $_GET['remove'] === 'all') {
             $this->cartItemsController->clearCart($cartId);
-            header("Location: index.php?url=cart");
+            header("Location: cart");
             exit();
         }
 
@@ -73,7 +73,7 @@ class cartController
             if ($productId > 0) {
                 $this->cartItemsController->removeFromCart($cartId, $productId);
             }
-            header("Location: index.php?url=cart");
+            header("Location: cart");
             exit();
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -81,7 +81,7 @@ class cartController
             $quantity  = (int)($_POST['quantity'] ?? 1);
 
             if ($productId <= 0) {
-                header("Location: index.php?url=shop");
+                header("Location: shop");
                 exit();
             }
 
@@ -91,7 +91,7 @@ class cartController
                 $this->cartItemsController->addToCart($cartId, $productId, $quantity);
             }
 
-            header("Location: index.php?url=cart");
+            header("Location: cart");
             exit();
         }
     }
@@ -106,13 +106,13 @@ class cartController
         if (isset($_GET['remove']) && is_numeric($_GET['remove'])) {
             $productId = (int)$_GET['remove'];
             $this->cartItemsController->removeFromCart($cartId, $productId);
-            header("Location: index.php?url=cart");
+            header("Location: cart");
             exit();
         }
 
         if (isset($_GET['clear_cart'])) {
             $this->cartItemsController->clearCart($cartId);
-            header("Location: index.php?url=cart");
+            header("Location: cart");
             exit();
         }
 

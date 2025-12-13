@@ -30,7 +30,7 @@ class orderController
     public function placeOrder()
     {
         if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?url=login");
+            header("Location: login");
             exit();
         }
 
@@ -39,7 +39,7 @@ class orderController
             $cartData = $this->cartController->getFullCart($userId);
 
             if (empty($cartData['items'])) {
-                header("Location: index.php?url=cart");
+                header("Location: cart");
                 exit();
             }
 
@@ -70,7 +70,7 @@ class orderController
                 $_SESSION['checkout_errors'] = $errors;
 
                 // Redirect về checkout để hiển thị form lại
-                header("Location: index.php?url=checkout");
+                header("Location: checkout");
                 exit();
             }
 
@@ -102,7 +102,7 @@ class orderController
     public function myOrders()
     {
         if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?url=login");
+            header("Location: login");
             exit();
         }
         $orders = $this->ordersModel->getOrdersByUser($_SESSION['user_id']);
@@ -111,13 +111,13 @@ class orderController
 
     public function orderDetail()
     {
-        if (!isset($_SESSION['user_id'])) exit(header("Location: index.php?url=login"));
-        if (!isset($_GET['id'])) exit(header("Location: index.php?url=my_orders"));
+        if (!isset($_SESSION['user_id'])) exit(header("Location: login"));
+        if (!isset($_GET['id'])) exit(header("Location: my_orders"));
 
         $orderId = $_GET['id'];
         $order = $this->ordersModel->getOrderById($orderId);
         if ($order['IDUser'] != $_SESSION['user_id']) {
-            header("Location: index.php?url=my_orders");
+            header("Location: my_orders");
             exit();
         }
         $items = $this->detailsModel->getDetailsByOrder($orderId);
@@ -128,7 +128,7 @@ class orderController
     public function adminOrders()
     {
         if ($_SESSION['RoleUser'] != 1) {
-            header("Location: index.php?url=home");
+            header("Location: home");
             exit();
         }
 
@@ -152,7 +152,7 @@ class orderController
             if ($_GET['action'] == 'complete') {
                 $this->ordersModel->updateStatus($id, 'Hoàn thành');
             }
-            header("Location: index.php?url=admin_orders");
+            header("Location: admin_orders");
             exit();
         }
 

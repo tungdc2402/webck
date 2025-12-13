@@ -57,13 +57,14 @@
 <body>
 <div class="sidebar">
     <h4 class="text-center text-white mb-4">TECH ADMIN</h4>
-    <a href="#" class="nav-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-    <a href="index.php?url=admin_shop" class="nav-link"><i class="fas fa-mobile-alt"></i> Sản phẩm</a>
-    <a href="index.php?url=admin_category" class="nav-link"><i class="fas fa-list"></i> Danh mục & Hãng</a>
-    <a href="index.php?url=admin_orders" class="nav-link"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
-    <a href="index.php?url=admin_reviews" class="nav-link"><i class="fas fa-users"></i> Khách hàng</a>
+    <a href="admin_shop"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="admin_shop" class="nav-link"><i class="fas fa-mobile-alt"></i> Sản phẩm</a>
+    <a href="admin_category" class="nav-link"><i class="fas fa-list"></i> Danh mục & Hãng</a>
+    <a href="admin_orders" class="nav-link"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
+    <a href="admin_reviews" class="nav-link"><i class="fas fa-users"></i> Khách hàng</a>
+    <a href="home" class="nav-link"><i class="fas fa-cog"></i>Vai Trò Khách</a>
     <a href="#" class="nav-link"><i class="fas fa-cog"></i> Cấu hình</a>
-    <a href="index.php?url=logout" class="nav-link text-danger" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất?');">
+    <a href="logout" class="nav-link text-danger" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất?');">
         <i class="fas fa-sign-out-alt"></i> Đăng xuất
     </a>
 </div>

@@ -10,31 +10,28 @@ session_start();
 
 $url = $_GET['url'] ?? 'home';
 
-$userRoutes = ['login', 'loginPost', 'register', 'registerPost', 'logout','checkout'];
+$userRoutes = ['login', 'loginPost', 'register', 'registerPost', 'logout', 'checkout'];
 $cartRoutes = ['cart', 'add_to_cart'];
-$adminRoutes = ['admin_shop', 'admin_create', 'admin_edit', 'admin_store', 'admin_delete', 'admin_category', 'admin_category_store', 'admin_category_delete','admin_reviews', 'admin_review_delete','admin_orders'];
+$adminRoutes = ['admin_shop', 'admin_create', 'admin_edit', 'admin_store', 'admin_delete', 'admin_category', 'admin_category_store', 'admin_category_delete', 'admin_reviews', 'admin_review_delete', 'admin_orders'];
 
 
 
 if (in_array($url, $userRoutes)) {
     require_once('controller/UserController.php');
     $userController = new UserController();
-    $userController ->run();
-
+    $userController->run();
 } elseif (in_array($url, $adminRoutes)) {
 
     if (strpos($url, 'admin_category') !== false) {
         require_once('controller/admin/CategoryControllerA.php');
         $cateController = new CategoryControllerA();
         $cateController->run();
-    }
-    else {
+    } else {
         require_once('controller/admin/productsControllerA.php');
         $proControllerA = new productsControllerA();
-        $proControllerA ->run();
+        $proControllerA->run();
     }
-
-}elseif (in_array($url, $cartRoutes)) {
+} elseif (in_array($url, $cartRoutes)) {
     require_once('controller/user/cartController.php');
     $cartController = new cartController();
 
@@ -46,6 +43,5 @@ if (in_array($url, $userRoutes)) {
 } else {
     require_once('controller/user/productsController.php');
     $proController = new productsController();
-    $proController ->run();
+    $proController->run();
 }
-?>

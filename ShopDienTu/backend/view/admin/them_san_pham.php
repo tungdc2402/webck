@@ -235,7 +235,7 @@
                 </div>
 
                 <div class="mt-4 border-top pt-3 text-end">
-                    <a href="run.php?url=shoppage" class="btn btn-secondary me-2">Hủy bỏ</a>
+                    <a href="index.php?url=admin_shop" class="btn btn-secondary me-2">Hủy bỏ</a>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save"></i> Lưu sản phẩm
                     </button>

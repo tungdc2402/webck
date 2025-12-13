@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
-    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="icon" type="image/png" href="../frontend/img/logo.png">
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -48,16 +48,16 @@
                 <div class="header-left">
                     <div class="logo1">
                         <a href="./">
-                            <img src="../frontend/img/logo.webp" alt="Logo" />
+                            <img src="../frontend/img/logo.jpg" alt="Logo" />
                         </a>
                     </div>
 
                     <div class="search">
                         <form action="index.php" method="GET" style="display: flex;">
                             <input type="hidden" name="url" value="search">
-                            <input type="text" name="keyword" placeholder="Search here..." required
+                            <input type="text" name="keyword" placeholder="Tìm kiếm tại đây..." required
                                 value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>" />
-                            <button style="background-color: #5cb85c; color: white; padding: 8px 16px; border: none; border-radius: 50px;">Search</button>
+                            <button style="background-color: #5cb85c; color: white; padding: 8px 16px; border: none; border-radius: 50px;">Tìm kiếm</button>
                         </form>
                     </div>
                 </div>
@@ -75,14 +75,14 @@
                                     Hello, <?php echo htmlspecialchars($_SESSION['user_name']); ?>
                                 </span>
                             </div>
-                            <a href="index.php?url=logout" class="btn-auth" style="background: #555; color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 14px;">
+                            <a href="logout" class="btn-auth" style="background: #555; color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 14px;">
                                 Đăng xuất
                             </a>
 
                         <?php else: ?>
 
-                            <a href="index.php?url=login" class="btn-auth btn-login">Đăng nhập</a>
-                            <a href="index.php?url=register" class="btn-auth btn-register">Đăng ký</a>
+                            <a href="login" class="btn-auth btn-login">Đăng nhập</a>
+                            <a href="register" class="btn-auth btn-register">Đăng ký</a>
 
                         <?php endif; ?>
                     </div>
@@ -115,9 +115,6 @@
             </div>
         </div>
     </div> <!-- End mainmenu area -->
-
-
-
 
     <div class="slider-area">
         <!-- Slider -->
@@ -197,15 +194,15 @@
                             ?>
                                 <div class="single-product">
                                     <div class="product-f-image">
-                                        <img src="../frontend/img/<?php echo htmlspecialchars($row['ImageUrlProduct']); ?>" alt="">
+                                        <img src="../frontend/img/<?php echo htmlspecialchars($row['ImageUrlProduct']); ?>" alt="" class="product-img">
                                         <div class="product-hover">
-                                            <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            <a href="index.php?url=detail&id=<?php echo $row['IDProduct']; ?>" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                            <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Giỏ Hàng</a>
+                                            <a href="detail&id=<?php echo $row['IDProduct']; ?>" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
                                         </div>
                                     </div>
 
                                     <h2>
-                                        <a href="index.php?url=detail&id=<?php echo $row['IDProduct']; ?>">
+                                        <a href="detail&id=<?php echo $row['IDProduct']; ?>">
                                             <?php echo htmlspecialchars($row['NameProduct']); ?>
                                         </a>
                                     </h2>
@@ -243,37 +240,37 @@
             <div class="row">
 
                 <div class="col-md-2 col-sm-4 col-xs-6">
-                    <a href="index.php?url=shop&cat=laptop" class="cat-item">
+                    <a href="shop&cat=laptop" class="cat-item">
                         <div class="cat-text">Laptop</div>
                     </a>
                 </div>
 
                 <div class="col-md-2 col-sm-4 col-xs-6">
-                    <a href="index.php?url=shop&cat=pc" class="cat-item">
+                    <a href="shop&cat=pc" class="cat-item">
                         <div class="cat-text">PC Gaming</div>
                     </a>
                 </div>
 
                 <div class="col-md-2 col-sm-4 col-xs-6">
-                    <a href="index.php?url=shop&cat=cpu" class="cat-item">
+                    <a href="shop&cat=cpu" class="cat-item">
                         <div class="cat-text">Phụ Kiện</div>
                     </a>
                 </div>
 
                 <div class="col-md-2 col-sm-4 col-xs-6">
-                    <a href="index.php?url=shop&cat=vga" class="cat-item">
+                    <a href="shop&cat=vga" class="cat-item">
                         <div class="cat-text">TV-Điện Máy</div>
                     </a>
                 </div>
 
                 <div class="col-md-2 col-sm-4 col-xs-6">
-                    <a href="index.php?url=shop&cat=mainboard" class="cat-item">
+                    <a href="shop&cat=mainboard" class="cat-item">
                         <div class="cat-text">Đồng Hồ</div>
                     </a>
                 </div>
 
                 <div class="col-md-2 col-sm-4 col-xs-6">
-                    <a href="index.php?url=shop&cat=phukien" class="cat-item">
+                    <a href="shop&cat=phukien" class="cat-item">
                         <div class="cat-text">Hàng Cũ</div>
                     </a>
                 </div>

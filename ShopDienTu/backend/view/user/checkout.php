@@ -33,52 +33,41 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="my_account.html"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="404.html"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">Currency :</span><span class="value">USD </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">USD</a></li>
-                                    <li><a href="#">VND</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">Language :</span><span class="value">English </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">Vietnamese</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="my_account.html"><i class="fa fa-user"></i> Tài Khoản</a></li>
+                            <li><a href="404.html"><i class="fa fa-heart"></i> Yêu Thích</a></li>
+                            <li><a href="cart.html"><i class="fa fa-user"></i> Giỏ Hàng</a></li>
+                            <li><a href="checkout.html"><i class="fa fa-user"></i> Thanh Toán</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div> <!-- End header area -->
+    <div class="site-branding-area1">
+        <div class="container1">
+            <div class="row1">
+                <div class="header-left">
+                    <div class="logo1">
+                        <a href="./">
+                            <img src="../frontend/img/logo.jpg" alt="Logo" />
+                        </a>
+                    </div>
 
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="./"><img src="../frontend/img/icon.png"></a></h1>
+                    <div class="search">
+                        <form action="index.php" method="GET" style="display: flex;">
+                            <input type="hidden" name="url" value="search">
+                            <input type="text" name="keyword" placeholder="Tìm kiếm tại đây..." required
+                                value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>" />
+                            <button style="background-color: #5cb85c; color: white; padding: 8px 16px; border: none; border-radius: 50px;">Tìm kiếm</button>
+                        </form>
                     </div>
                 </div>
-
-                <div class="col-sm-6">
+                <div class="header-right">
+                    <!-- <div class="col-sm-6"> -->
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$400</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">1</span></a>
+                        <a href="cart.html">Cart<i class="fa fa-shopping-cart"></i> <span class="product-count">1</span></a>
                     </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -97,10 +86,10 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="home">Home</a></li>
-                        <li><a href="shoppage">Shop page</a></li>
-                        <li><a href="cart">Cart</a></li>
-                        <li class="active"><a href="checkout">Checkout</a></li>
+                        <li><a href="home">Trang chủ</a></li>
+                        <li><a href="shoppage">Cửa hàng</a></li>
+                        <li><a href="cart">Giỏ Hàng</a></li>
+                        <li class="active"><a href="checkout">Thanh toán</a></li>
                     </ul>
                 </div>
             </div>
@@ -112,7 +101,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2><b>Checkout</b></h2>
+                        <h2><b>Trang Thanh Toán</b></h2>
                     </div>
                 </div>
             </div>
@@ -126,15 +115,15 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="single-sidebar">
-                        <h2 class="sidebar-title">Search Products</h2>
+                        <h2 class="sidebar-title">Tìm kiếm sản phẩm</h2>
                         <form action="404.html">
-                            <input type="text" placeholder="Search products...">
-                            <input type="submit" value="Search">
+                            <input type="text" placeholder="Tìm kiếm tại đây...">
+                            <input type="submit" value="Tìm kiếm">
                         </form>
                     </div>
 
                     <div class="single-sidebar">
-                        <h2 class="sidebar-title">Products</h2>
+                        <h2 class="sidebar-title">Sản Phẩm</h2>
                         <div class="thubmnail-recent">
                             <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
                             <h2><a href="">Case MIK BARBATOS</a></h2>
@@ -166,7 +155,7 @@
                     </div>
 
                     <div class="single-sidebar">
-                        <h2 class="sidebar-title">Recent Posts</h2>
+                        <h2 class="sidebar-title">Bài viết gần đây</h2>
                         <ul>
                             <li><a href="shop.html">Case MIK BARBATOS</a></li>
                             <li><a href="shop.html">Case ASUS A21 micro-ATX 3FA</a></li>
@@ -232,14 +221,14 @@
 
                                 <div id="customer_details">
                                     <div class="woocommerce-billing-fields">
-                                        <h3>Billing Details</h3>
+                                        <h3>Chi tiết hóa đơn</h3>
                                         <p id="full_name_field" class="form-row form-row-wide validate-required">
-                                            <label class="" for="full_name">Full Name <abbr title="required" class="required">*</abbr>
+                                            <label class="" for="full_name">Họ và Tên <abbr title="required" class="required">*</abbr>
                                             </label>
                                             <input type="text" value="" placeholder="" id="full_name" name="FullNameUser" class="input-text ">
                                         </p>
                                         <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
-                                            <label class="" for="billing_country">Country <abbr title="required" class="required">*</abbr>
+                                            <label class="" for="billing_country">Quốc Gia<abbr title="required" class="required">*</abbr>
                                             </label>
                                             <select class="country_to_state country_select" id="billing_country" name="billing_country">
                                                 <option value="">Select a country…</option>
@@ -490,24 +479,24 @@
                                             </select>
                                         </p>
                                         <p id="phone_field" class="form-row form-row-wide validate-required">
-                                            <label class="" for="phone">Phone <abbr title="required" class="required">*</abbr>
+                                            <label class="" for="phone">Số điện thoại <abbr title="required" class="required">*</abbr>
                                             </label>
                                             <input type="text" value="" placeholder="" id="phone" name="Phone" class="input-text ">
                                         </p>
                                         <p id="province_field" class="form-row form-row-wide address-field validate-required">
-                                            <label class="" for="province">Province <abbr title="required" class="required">*</abbr>
+                                            <label class="" for="province">Tỉnh <abbr title="required" class="required">*</abbr>
                                             </label>
                                             <input type="text" value="" placeholder="Province" id="province" name="Province" class="input-text ">
                                         </p>
 
                                         <p id="ward_field" class="form-row form-row-wide address-field validate-required">
-                                            <label class="" for="ward">Ward <abbr title="required" class="required">*</abbr>
+                                            <label class="" for="ward">Xã <abbr title="required" class="required">*</abbr>
                                             </label>
                                             <input type="text" value="" placeholder="Ward" id="ward" name="Ward" class="input-text ">
                                         </p>
 
                                         <p id="address_detail_field" class="form-row form-row-wide address-field validate-required">
-                                            <label class="" for="address_detail">Address Detail <abbr title="required" class="required">*</abbr>
+                                            <label class="" for="address_detail">Tên đường, Tòa nhà, Số nhà<abbr title="required" class="required">*</abbr>
                                             </label>
                                             <input type="text" value="" placeholder="Street address, apartment, etc." id="address_detail" name="AddressDetail" class="input-text ">
                                         </p>
@@ -518,19 +507,19 @@
                                 </div>
 
                                 <p id="note_field" class="form-row notes">
-                                    <label class="" for="note">Note</label>
+                                    <label class="" for="note">Ghi chú</label>
                                     <textarea cols="5" rows="2" placeholder="Notes about your order, e.g. special notes for delivery." id="note" class="input-text " name="Note"></textarea>
                                 </p>
 
-                                <h3 id="order_review_heading">Your order</h3>
+                                <h3 id="order_review_heading">Đơn Hàng Của Bạn</h3>
 
                                 <div id="order_review" style="position: relative;">
                                     <table class="shop_table">
                                         <thead>
                                             <tr>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-quantity">Quantity</th>
-                                                <th class="product-total">Price</th>
+                                                <th class="product-name">Sản Phẩm</th>
+                                                <th class="product-quantity">Số Lượng</th>
+                                                <th class="product-total">Giá Thành</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -560,7 +549,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr class="cart-subtotal">
-                                                <th colspan="2">Subtotal</th>
+                                                <th colspan="2">Tổng Tiền</th>
                                                 <td><span class="amount">$<?php echo number_format($subtotal, 2); ?></span></td>
                                             </tr>
 
@@ -570,14 +559,14 @@
                                             </tr>
 
                                             <tr class="shipping">
-                                                <th colspan="2">Shipping and Handling</th>
+                                                <th colspan="2">Phí Vận Chuyện và Xử lý</th>
                                                 <td>
-                                                    <span class="amount">Free Shipping</span>
+                                                    <span class="amount">Miễn Phí Giao Hàng</span>
                                                 </td>
                                             </tr>
 
                                             <tr class="order-total">
-                                                <th colspan="2">Order Total</th>
+                                                <th colspan="2">Tổng Tiền Đơn Hàng</th>
                                                 <td>
                                                     <strong>
                                                         <span class="amount text-danger">
@@ -633,13 +622,13 @@
     </div>
 
 
-    <div class="footer-top-area">
+   <div class="footer-top-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>Demo <span>IE104</span></h2>
-                        <p>Trong thời đại hiện đại, sự tiện lợi và linh hoạt trong việc mua sắm trực tuyến ngày càng trở thành một xu hướng phổ biến. Đối với lĩnh vực điện máy, việc tạo ra một website bán hàng chuyên nghiệp không chỉ là một cơ hội kinh doanh mà còn là cách để đáp ứng nhu cầu ngày càng cao của khách hàng. ( văn mẫu.txt )</p>
+                        <h2>Zo<span>nanio</span></h2>
+                        <p>Trong thời đại hiện đại, sự tiện lợi và linh hoạt trong việc mua sắm trực tuyến ngày càng trở thành một xu hướng phổ biến. Đối với lĩnh vực điện tử, điện máy, việc tạo ra một website bán hàng chuyên nghiệp không chỉ là một cơ hội kinh doanh mà còn là cách để đáp ứng nhu cầu ngày càng cao của khách hàng.</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -651,52 +640,52 @@
 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
+                        <h2 class="footer-wid-title">Thanh điều hướng </h2>
                         <ul>
-                            <li><a href="my_account.html">My account</a></li> <!-- filter -->
-                            <li><a href="#">Order history</a></li> <!-- filter -->
-                            <li><a href="#">Wishlist</a></li> <!-- filter -->
-                            <li><a href="#">Vendor contact</a></li> <!-- filter -->
-                            <li><a href="index.html">Home page</a></li> <!-- filter -->
+                            <li><a href="my_account.html">Tài khoản</a></li> <!-- filter -->
+                            <li><a href="#">Lịch sử mua hàng</a></li> <!-- filter -->
+                            <li><a href="#">Yêu thích</a></li> <!-- filter -->
+                            <li><a href="#">Liên hệ</a></li> <!-- filter -->
+                            <li><a href="index.html">Trang chủ</a></li> <!-- filter -->
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categories</h2>
+                        <h2 class="footer-wid-title">Danh mục</h2>
                         <ul>
-                            <li><a href="shop.html">Mainboard</a></li> <!-- filter -->
-                            <li><a href="shop.html">Card VGA </a></li> <!-- filter -->
-                            <li><a href="shop.html">Ram</a></li> <!-- filter -->
-                            <li><a href="shop.html">Case PC</a></li> <!-- filter -->
-                            <li><a href="shop.html">CPU</a></li> <!-- filter -->
+                            <li><a href="shop.html">LAPTOP</a></li> <!-- filter -->
+                            <li><a href="shop.html">Phụ Kiện </a></li> <!-- filter -->
+                            <li><a href="shop.html">TV - Điện Máy</a></li> <!-- filter -->
+                            <li><a href="shop.html">Đồng Hồ</a></li> <!-- filter -->
+                            <li><a href="shop.html">Hàng Cũ</a></li> <!-- filter -->
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-feedback">
-                        <h2 class="footer-wid-title">Feedback</h2>
-                        <p>Feel free to reach out to us for any inquiries, feedback, or support. We're here to help!</p>
+                        <h2 class="footer-wid-title">Phản hồi</h2>
+                        <p>Vui lòng liên hệ với chúng tôi nếu bạn có bất kỳ thắc mắc, phản hồi hoặc cần hỗ trợ nào. Chúng tôi luôn sẵn lòng trợ giúp!</p>
                         <div class="feedback-form">
                             <form action="404.html">
-                                <input type="email" placeholder="Your email">
-                                <input type="submit" value="Subscribe">
+                                <input type="email" placeholder="Nhập email...">
+                                <input type="submit" value="ĐĂNG KÝ">
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> <!-- End footer top area -->
 
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2024 IE104. All Rights Reserved. </p>
+                        <p>&copy; Zonanio. Bản quyền đã được bảo hộ. </p>
                     </div>
                 </div>
 
@@ -710,9 +699,25 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    </div> <!-- End footer bottom area -->
     <!-- Latest jQuery form server -->
+
+    <div class="floating-contact-wrap">
+
+        <a href="https://zalo.me/0705955589" target="_blank" class="contact-btn btn-zalo">
+            <span class="zalo-text">Z</span>
+            <div class="contact-tooltip">Chat Zalo</div>
+        </a>
+
+        <a href="https://m.me/102803015947076" target="_blank" class="contact-btn btn-messenger">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.03 2 11C2 13.66 3.39 16.05 5.61 17.58L4.99 20.54C4.86 21.13 5.39 21.61 5.95 21.43L9.08 20.41C10.02 20.79 11 21 12 21C17.52 21 22 16.97 22 12C22 7.03 17.52 2 12 2ZM13.06 15.19L10.68 12.63L6.03 15.18C5.69 15.37 5.28 15 5.43 14.64L8.08 8.41C8.25 8.02 8.78 8.02 8.95 8.41L11.32 10.97L15.97 8.42C16.31 8.23 16.72 8.6 16.57 8.96L13.92 15.19C13.75 15.58 13.22 15.58 13.06 15.19Z" />
+                </path>
+            </svg>
+            <div class="contact-tooltip">Chat Facebook</div>
+        </a>
+
+    </div>
     <script src="https://code.jquery.com/jquery.min.js"></script>
 
     <!-- Bootstrap JS form CDN -->
@@ -727,6 +732,10 @@
 
     <!-- Main Script -->
     <script src="../frontend/js/main.js"></script>
+
+    <!-- Slider -->
+    <script type="text/javascript" src="../frontend/js/bxslider.min.js"></script>
+    <script type="text/javascript" src="../frontend/js/script.slider.js"></script>
 </body>
 
 </html>

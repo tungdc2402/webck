@@ -10,3 +10,6 @@ RewriteRule ^admin/(.*)$ run.php?url=$1 [L,QSA]
 
 # User route
 RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+
+# URL đẹp cho chi tiết sản phẩm: tên-sản-phẩm-id
+RewriteRule ^([a-z0-9-]+)-([0-9]+)$ index.php?url=detail&id=$2 [L,QSA]

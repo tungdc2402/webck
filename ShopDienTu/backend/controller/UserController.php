@@ -38,14 +38,14 @@ class UserController
     public function checkOut()
     {
         if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?url=login");
+            header("Location: login");
             exit();
         }
 
         $userId = $_SESSION['user_id'];
         $cartData = $this->cartController->getFullCart($userId);
         if (empty($cartData['items'])) {
-            header("Location: index.php?url=cart");
+            header("Location: cart");
             exit();
         }
         // Xử lý submit form đặt hàng
@@ -77,7 +77,7 @@ class UserController
                 $result = $this->userModel->insertUser($fullname, $birthday, $phone, $email, $passHash);
 
                 if ($result) {
-                    header("Location: index.php?url=login&msg=registered");
+                    header("Location: login&msg=registered");
                     exit();
                 } else {
                     $error = "Đăng ký thất bại, vui lòng thử lại!";
@@ -107,9 +107,9 @@ class UserController
                 $_SESSION['IDShoppingCart'] = $cartId;
 
                 if ($role == 1) {
-                    header("Location: index.php?url=admin_shop");
+                    header("Location: admin_shop");
                 } else {
-                    header("Location: index.php?url=home");
+                    header("Location: home");
                 }
                 exit();
             } else {
@@ -123,7 +123,7 @@ class UserController
     {
         session_unset();
         session_destroy();
-        header("Location: index.php?url=home");
+        header("Location: home");
     }
 
     public function run()
@@ -165,7 +165,7 @@ class UserController
                 $this->logout();
                 break;
             default:
-                header("Location: index.php?url=home");
+                header("Location: home");
                 break;
         }
     }
