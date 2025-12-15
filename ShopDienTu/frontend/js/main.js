@@ -8,6 +8,7 @@ jQuery(document).ready(function($){
     $('.product-carousel').owlCarousel({
         loop:true,
         nav:true,
+        navText: ['Trước', 'Sau'],
         margin:20,
         responsiveClass:true,
         responsive:{
@@ -26,6 +27,7 @@ jQuery(document).ready(function($){
     $('.related-products-carousel').owlCarousel({
         loop:true,
         nav:true,
+        navText: ['Trước', 'Sau'],
         margin:20,
         responsiveClass:true,
         responsive:{
@@ -47,6 +49,7 @@ jQuery(document).ready(function($){
     $('.brand-list').owlCarousel({
         loop:true,
         nav:true,
+        navText: ['Trước', 'Sau'],
         margin:20,
         responsiveClass:true,
         responsive:{

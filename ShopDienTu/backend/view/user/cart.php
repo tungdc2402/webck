@@ -41,9 +41,6 @@
     <link rel="stylesheet" href="../frontend/css/main.css" />
     <link rel="stylesheet" href="../frontend/css/font-awesome.min.css">
     <base href="/DACS2/ShopDienTu/backend/">
-
-
-
 </head>
 
 <body>
