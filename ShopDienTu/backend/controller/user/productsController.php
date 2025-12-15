@@ -20,9 +20,30 @@ class productsController
         $products = $this->proController->getAllProducts();
         require_once(__DIR__ . "/../../view/user/shop.php");
     }
-
+    private function loadTopSellingProducts()
+    {
+        return $this->proController->getTopSellingProducts(3);
+    }
     public function home()
     {
+        $recentlyViewed = [];
+        if (!empty($_SESSION['recently_viewed'])) {
+            // Lấy tối đa 3 sản phẩm gần nhất từ session
+            $viewedIds = $_SESSION['recently_viewed'];
+            $viewedIds = array_slice($viewedIds, 0, 3); // Chỉ lấy 3 cái mới nhất
+            // === PHẦN MỚI: NỔI BẬT - SẢN PHẨM ĐƯỢC REVIEW NHIỀU NHẤT ===
+            $featuredProducts = $this->proController->getMostReviewedProducts(3);
+            foreach ($viewedIds as $viewedId) {
+                $viewedProduct = $this->proController->getProductById($viewedId);
+                if ($viewedProduct) { // Phòng trường hợp sản phẩm bị xóa
+                    $recentlyViewed[] = $viewedProduct;
+                }
+            }
+        }
+        // ============================================
+
+        // Nếu mày có phần Bán Chạy ở home thì thêm luôn
+        $topSelling = $this->proController->getTopSellingProducts(3);
         $products = $this->proController->get10LatestProducts();
         require_once(__DIR__ . "/../../view/user/home.php");
     }
@@ -43,11 +64,50 @@ class productsController
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
+            // === PHẦN LƯU LỊCH SỬ XEM - GIỮ HẾT, KHÔNG GIỚI HẠN TRƯỚC ===
+            if (!isset($_SESSION['recently_viewed'])) {
+                $_SESSION['recently_viewed'] = []; // Lần đầu tạo mảng rỗng
+            }
+
+            // Nếu sản phẩm đã xem rồi thì xóa đi để đưa lên đầu lại (tránh lặp)
+            if (($key = array_search($id, $_SESSION['recently_viewed'])) !== false) {
+                unset($_SESSION['recently_viewed'][$key]);
+            }
+
+            // Đưa sản phẩm hiện tại lên đầu danh sách
+            array_unshift($_SESSION['recently_viewed'], $id);
+
             $product = $this->proController->getProductById($id);
             $relatedProducts = $this->proController->get10LatestProducts();
             $reviews = $this->proController->getReviewsByProductId($id);
+
+            // === LẤY 3 SẢN PHẨM GẦN NHẤT ĐỂ HIỂN THỊ (loại trừ sản phẩm hiện tại) ===
+            $recentlyViewed = [];
+            if (!empty($_SESSION['recently_viewed'])) {
+                // Copy mảng để xử lý
+                $viewedIds = $_SESSION['recently_viewed'];
+
+                // Loại bỏ sản phẩm đang xem hiện tại
+                if (($key = array_search($id, $viewedIds)) !== false) {
+                    unset($viewedIds[$key]);
+                }
+
+                // Lấy tối đa 3 cái đầu tiên (gần nhất)
+                $viewedIds = array_values($viewedIds); // reset key
+                $viewedIds = array_slice($viewedIds, 0, 3);
+
+                // Lấy thông tin từng sản phẩm
+                foreach ($viewedIds as $viewedId) {
+                    $viewedProduct = $this->proController->getProductById($viewedId);
+                    if ($viewedProduct) { // phòng trường hợp sản phẩm bị xóa
+                        $recentlyViewed[] = $viewedProduct;
+                    }
+                }
+            }
+            // ====================================================================
+
             if ($product) {
-                include(__DIR__ . "/../../view/user/single-product.php");
+                require_once(__DIR__ . "/../../view/user/single-product.php");
             } else {
                 $this->home();
             }

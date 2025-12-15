@@ -154,10 +154,10 @@
                                 <!-- Nếu có giá cũ thì thêm <del> ở đây -->
                             </div>
                             <div class="product-option-shop">
-                                <form action='index.php?url=add_to_cart' method='POST' style='margin: 0; padding: 0;'>
+                                <form action='add_to_cart' method='POST' style='margin: 0; padding: 0;'>
                                     <input type='hidden' name='product_id' value='<?php echo $row['IDProduct']; ?>'>
                                     <button type='submit' class='add_to_cart_button'>
-                                        Add to cart
+                                        Giỏ hàng
                                     </button>
                                 </form>
                             </div>

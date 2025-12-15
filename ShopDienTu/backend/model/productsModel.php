@@ -134,4 +134,34 @@ class productsModel
         $result = mysqli_query($conn, $sql);
         return $result;
     }
+    // Thêm vào cuối class productsModel (trước dấu } cuối cùng)
+    public function getTopSellingProducts($limit = 3)
+    {
+        include("connect.php");
+        $limit = (int)$limit;
+        $sql = "SELECT IDProduct, NameProduct, PriceProduct, Discount, ImageUrlProduct, Sold
+            FROM products
+            WHERE IsActiveProduct = 1
+            ORDER BY Sold DESC
+            LIMIT $limit";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
+    // Thêm vào cuối class productsModel (trước dấu } cuối cùng)
+
+    public function getMostReviewedProducts($limit = 3)
+    {
+        include("connect.php");
+        $limit = (int)$limit;
+        $sql = "SELECT p.IDProduct, p.NameProduct, p.PriceProduct, p.Discount, p.ImageUrlProduct,
+                   COUNT(r.IDReview) AS review_count
+            FROM products p
+            LEFT JOIN reviews r ON p.IDProduct = r.IDProduct
+            WHERE p.IsActiveProduct = 1
+            GROUP BY p.IDProduct
+            ORDER BY review_count DESC
+            LIMIT $limit";
+        $result = mysqli_query($conn, $sql);
+        return $result;
+    }
 }

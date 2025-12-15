@@ -233,7 +233,11 @@
                                     <div class="product-f-image">
                                         <img src="../frontend/img/<?php echo htmlspecialchars($row['ImageUrlProduct']); ?>" alt="" class="product-img">
                                         <div class="product-hover">
-                                            <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Giỏ Hàng</a>
+                                            <a href="javascript:void(0)"
+                                                class="add-to-cart-link"
+                                                onclick="addToCartPost(<?php echo $row['IDProduct']; ?>)">
+                                                <i class="fa fa-shopping-cart"></i> Giỏ Hàng
+                                            </a>
                                             <a href="detail&id=<?php echo $row['IDProduct']; ?>" class="view-details-link"><i class="fa fa-link"></i> Xem chi tiết</a>
                                         </div>
                                     </div>
@@ -323,148 +327,143 @@
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Bán Chạy</h2>
                         <a href="" class="wid-view-more">Xem Tất Cả</a>
-                        <div class="single-wid-product">
-                            <a href="single-product.html"><img src="../frontend/img/product-thumb-1.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html">Case MIK BARBATOS</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$150.00</ins> <del>$225.00</del>
-                            </div>
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html"><img src="../frontend/img/product-thumb-2.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html">Mainboard Gigabyte AORUS Z890</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$400.00</ins> <del>$425.00</del>
-                            </div>
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html"><img src="../frontend/img/product-thumb-3.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html">Case ASUS A21 micro-ATX 3FA</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$199.00</ins> <del>$225.00</del>
-                            </div>
-                        </div>
+                        <?php
+                        // Biến $topSelling đã được truyền từ Controller
+                        if (isset($topSelling) && mysqli_num_rows($topSelling) > 0):
+                            while ($row = mysqli_fetch_array($topSelling)):
+                                $gia_goc = $row['PriceProduct'];
+                                $giam    = isset($row['Discount']) ? (int)$row['Discount'] : 0;
+                                $gia_moi = $gia_goc * (100 - $giam) / 100;
+                        ?>
+                                <div class="single-wid-product">
+                                    <a href="index.php?url=detail&id=<?php echo $row['IDProduct']; ?>">
+                                        <img src="../frontend/img/<?php echo htmlspecialchars($row['ImageUrlProduct']); ?>"
+                                            alt="<?php echo htmlspecialchars($row['NameProduct']); ?>"
+                                            class="product-thumb">
+                                    </a>
+                                    <h2><a href="index.php?url=detail&id=<?php echo $row['IDProduct']; ?>">
+                                            <?php echo htmlspecialchars($row['NameProduct']); ?>
+                                        </a></h2>
+
+                                    <div class="product-wid-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+
+                                    <div class="product-wid-price">
+                                        <ins>$<?php echo number_format($gia_moi, 0); ?>.00</ins>
+                                        <?php if ($giam > 0): ?>
+                                            <del>$<?php echo number_format($gia_goc, 0); ?>.00</del>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php
+                            endwhile;
+                        else:
+                            ?>
+                            <p class="text-center">Chưa có sản phẩm bán chạy.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Mục Vừa Xem</h2>
                         <a href="#" class="wid-view-more">Xem Tất Cả</a>
-                        <div class="single-wid-product">
-                            <a href="single-product.html"><img src="../frontend/img/product-thumb-4.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html">Corsair NAUTILUS 240 ARGB</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
 
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$100.00</ins> <del>$125.00</del>
-                            </div>
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html"><img src="../frontend/img/product-thumb-1.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html">Case MIK BARBATOS</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$150.00</ins> <del>$225.00</del>
-                            </div>
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html"><img src="../frontend/img/product-thumb-2.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html">Mainboard Gigabyte AORUS Z890</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$400.00</ins> <del>$425.00</del>
-                            </div>
-                        </div>
+                        <?php if (!empty($recentlyViewed)): ?>
+                            <?php foreach ($recentlyViewed as $row):
+                                $gia_goc = $row['PriceProduct'];
+                                $giam    = isset($row['Discount']) ? (int)$row['Discount'] : 0;
+                                $gia_moi = $gia_goc * (100 - $giam) / 100;
+                            ?>
+                                <div class="single-wid-product">
+                                    <a href="index.php?url=detail&id=<?php echo $row['IDProduct']; ?>">
+                                        <img src="../frontend/img/<?php echo htmlspecialchars($row['ImageUrlProduct']); ?>"
+                                            alt="<?php echo htmlspecialchars($row['NameProduct']); ?>"
+                                            class="product-thumb">
+                                    </a>
+                                    <h2>
+                                        <a href="index.php?url=detail&id=<?php echo $row['IDProduct']; ?>">
+                                            <?php echo htmlspecialchars($row['NameProduct']); ?>
+                                        </a>
+                                    </h2>
+
+                                    <div class="product-wid-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+
+                                    <div class="product-wid-price">
+                                        <ins>$<?php echo number_format($gia_moi, 0); ?>.00</ins>
+                                        <?php if ($giam > 0): ?>
+                                            <del>$<?php echo number_format($gia_goc, 0); ?>.00</del>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p class="text-center">Bạn chưa xem sản phẩm nào.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="single-product-widget">
                         <h2 class="product-wid-title">Nổi Bật</h2>
                         <a href="#" class="wid-view-more">Xem Tất Cả</a>
-                        <div class="single-wid-product">
-                            <a href="single-product.html"><img src="../frontend/img/product-thumb-3.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html">Case ASUS A21 micro-ATX 3FA</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$199.00</ins> <del>$225.00</del>
-                            </div>
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html"><img src="../frontend/img/product-thumb-4.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html">Corsair NAUTILUS 240 ARGB</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
 
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$100.00</ins> <del>$125.00</del>
-                            </div>
-                        </div>
-                        <div class="single-wid-product">
-                            <a href="single-product.html"><img src="../frontend/img/product-thumb-1.jpg" alt="" class="product-thumb"></a>
-                            <h2><a href="single-product.html">Case MIK BARBATOS</a></h2>
-                            <div class="product-wid-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product-wid-price">
-                                <ins>$150.00</ins> <del>$225.00</del>
-                            </div>
-                        </div>
+                        <?php
+                        // $featuredProducts đã được truyền từ Controller
+                        if ($featuredProducts && mysqli_num_rows($featuredProducts) > 0):
+                            while ($row = mysqli_fetch_array($featuredProducts)):
+                                $gia_goc = $row['PriceProduct'];
+                                $giam    = isset($row['Discount']) ? (int)$row['Discount'] : 0;
+                                $gia_moi = $gia_goc * (100 - $giam) / 100;
+                        ?>
+                                <div class="single-wid-product">
+                                    <a href="index.php?url=detail&id=<?php echo $row['IDProduct']; ?>">
+                                        <img src="../frontend/img/<?php echo htmlspecialchars($row['ImageUrlProduct']); ?>"
+                                            alt="<?php echo htmlspecialchars($row['NameProduct']); ?>"
+                                            class="product-thumb">
+                                    </a>
+                                    <h2>
+                                        <a href="index.php?url=detail&id=<?php echo $row['IDProduct']; ?>">
+                                            <?php echo htmlspecialchars($row['NameProduct']); ?>
+                                        </a>
+                                    </h2>
+
+                                    <div class="product-wid-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+
+                                    <div class="product-wid-price">
+                                        <ins>$<?php echo number_format($gia_moi, 0); ?>.00</ins>
+                                        <?php if ($giam > 0): ?>
+                                            <del>$<?php echo number_format($gia_goc, 0); ?>.00</del>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php
+                            endwhile;
+                        else:
+                            ?>
+                            <p class="text-center">Chưa có sản phẩm nổi bật.</p>
+                        <?php endif; ?>
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div> <!-- End product widget area -->
 
     <div class="footer-top-area">
@@ -581,6 +580,23 @@
     <!-- Slider -->
     <script type="text/javascript" src="../frontend/js/bxslider.min.js"></script>
     <script type="text/javascript" src="../frontend/js/script.slider.js"></script>
+    <script>
+        // add to cart
+        function addToCartPost(productId) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'add_to_cart';
+
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'product_id';
+            input.value = productId;
+
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
 </body>
 
 </html>
