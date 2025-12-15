@@ -100,6 +100,15 @@ class productsModel
         $sql = "UPDATE products SET QuantityProduct = QuantityProduct - $quantity WHERE IDProduct = '$productId'";
         return mysqli_query($conn, $sql);
     }
+
+    public function increaseSold($productId, $quantity)
+    {
+        global $conn;
+        $productId = mysqli_real_escape_string($conn, $productId);
+        $quantity = (int)$quantity; // Đảm bảo là số nguyên
+        $sql = "UPDATE products SET Sold = Sold + $quantity WHERE IDProduct = '$productId'";
+        return mysqli_query($conn, $sql);
+    }
     public function getAllReviews()
     {
         include("connect.php");
@@ -118,7 +127,8 @@ class productsModel
         $sql = "DELETE FROM reviews WHERE IDReview = '$id'";
         return mysqli_query($conn, $sql);
     }
-    public function getProductsByCategory($idCat){
+    public function getProductsByCategory($idCat)
+    {
         include("connect.php");
         $sql = "SELECT * FROM products WHERE IDCategory = '$idCat'";
         $result = mysqli_query($conn, $sql);

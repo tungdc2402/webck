@@ -67,7 +67,7 @@
                         <?php while ($row = mysqli_fetch_array($products)) { ?>
                             <tr>
                                 <td>
-                                    <img src=<?php echo $row['ImageUrlProduct'] ?> class="rounded product-img" alt="img">
+                                    <img src="../frontend/img/<?php echo $row['ImageUrlProduct'] ?>" class="rounded product-img" alt="Hình ảnh sản phẩm">
                                 </td>
                                 <td>
                                     <span class="fw-bold"><?php echo htmlspecialchars($row['NameProduct']); ?></span>

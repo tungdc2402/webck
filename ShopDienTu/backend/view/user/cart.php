@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cart</title>
-    <link rel="icon" type="image/png" href="img/logo.png">
+    <base href="/DACS2/ShopDienTu/backend/">
+    <link rel="icon" type="image/png" href="../frontend/img/letter-z.png">
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -18,10 +19,30 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../frontend/css/font-awesome.min.css">
+    <base href="/DACS2/ShopDienTu/backend/">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../frontend/css/owl.carousel.css">
     <link rel="stylesheet" href="../frontend/css/style.css">
     <link rel="stylesheet" href="../frontend/css/responsive.css">
+
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    </head>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../frontend/css/grid.css" />
+    <link rel="stylesheet" href="../frontend/css/base.css" />
+    <link rel="stylesheet" href="../frontend/css/main.css" />
+    <link rel="stylesheet" href="../frontend/css/font-awesome.min.css">
+    <base href="/DACS2/ShopDienTu/backend/">
+
+
 
 </head>
 
@@ -32,52 +53,41 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="my_account.html"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="404.html"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">Currency :</span><span class="value">USD </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">USD</a></li>
-                                    <li><a href="#">VND</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">Language :</span><span class="value">English </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">Vietnamese</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="my_account.html"><i class="fa fa-user"></i> Tài Khoản</a></li>
+                            <li><a href="404.html"><i class="fa fa-heart"></i> Yêu Thích</a></li>
+                            <li><a href="cart.html"><i class="fa fa-user"></i> Giỏ Hàng</a></li>
+                            <li><a href="checkout.html"><i class="fa fa-user"></i> Thanh Toán</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div> <!-- End header area -->
+    <div class="site-branding-area1">
+        <div class="container1">
+            <div class="row1">
+                <div class="header-left">
+                    <div class="logo1">
+                        <a href="./">
+                            <img src="../frontend/img/logo.jpg" alt="Logo" />
+                        </a>
+                    </div>
 
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="./"><img src="../frontend/img/icon.png"></a></h1>
+                    <div class="search">
+                        <form action="index.php" method="GET" style="display: flex;">
+                            <input type="hidden" name="url" value="search">
+                            <input type="text" name="keyword" placeholder="Tìm kiếm tại đây..." required
+                                value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>" />
+                            <button style="background-color: #5cb85c; color: white; padding: 8px 16px; border: none; border-radius: 50px;">Tìm kiếm</button>
+                        </form>
                     </div>
                 </div>
-
-                <div class="col-sm-6">
+                <div class="header-right">
+                    <!-- <div class="col-sm-6"> -->
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$400</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">1</span></a>
+                        <a href="cart.html">Cart<i class="fa fa-shopping-cart"></i><span class="product-count">1</span></a>
                     </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -96,12 +106,11 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <ul class="nav navbar-nav">
-                            <li><a href="home">Trang chủ</a></li>
-                            <li><a href="shoppage">Shop page</a></li>
-                            <li class="active"><a href="cart">Cart</a></li>
-                            <li><a href="checkout">Checkout</a></li>
-                        </ul>
+                        <li><a href="home">Trang chủ</a></li>
+                        <li><a href="shoppage">Cửa hàng</a></li>
+                        <li class="active"><a href="cart">Giỏ Hàng</a></li>
+                        <li><a href="checkout">Thanh toán</a></li>
+                        <li><a href="my_orders">Đơn Hàng</a></li>
                     </ul>
                 </div>
             </div>
@@ -435,7 +444,22 @@
             </div>
         </div>
     </div>
+    <div class="floating-contact-wrap">
 
+        <a href="https://zalo.me/0705955589" target="_blank" class="contact-btn btn-zalo">
+            <span class="zalo-text">Z</span>
+            <div class="contact-tooltip">Chat Zalo</div>
+        </a>
+
+        <a href="https://m.me/102803015947076" target="_blank" class="contact-btn btn-messenger">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.03 2 11C2 13.66 3.39 16.05 5.61 17.58L4.99 20.54C4.86 21.13 5.39 21.61 5.95 21.43L9.08 20.41C10.02 20.79 11 21 12 21C17.52 21 22 16.97 22 12C22 7.03 17.52 2 12 2ZM13.06 15.19L10.68 12.63L6.03 15.18C5.69 15.37 5.28 15 5.43 14.64L8.08 8.41C8.25 8.02 8.78 8.02 8.95 8.41L11.32 10.97L15.97 8.42C16.31 8.23 16.72 8.6 16.57 8.96L13.92 15.19C13.75 15.58 13.22 15.58 13.06 15.19Z" />
+                </path>
+            </svg>
+            <div class="contact-tooltip">Chat Facebook</div>
+        </a>
+
+    </div>
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
 

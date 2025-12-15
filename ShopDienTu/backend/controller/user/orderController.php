@@ -149,8 +149,15 @@ class orderController
                     $this->productsModel->decreaseStock($item['IDProduct'], $item['QuantityOrderDetail']);
                 }
             }
-            if ($_GET['action'] == 'complete') {
+            if ($_GET['action'] == 'complete' && $order['StatusOrder'] == 'Đang vận chuyển') {  // Nên kiểm tra trạng thái trước khi hoàn thành
+                // Cập nhật trạng thái đơn hàng thành Hoàn thành
                 $this->ordersModel->updateStatus($id, 'Hoàn thành');
+
+                // Tăng số lượng đã bán (Sold) cho từng sản phẩm trong đơn
+                $items = $this->detailsModel->getDetailsByOrder($id);
+                foreach ($items as $item) {
+                    $this->productsModel->increaseSold($item['IDProduct'], $item['QuantityOrderDetail']);
+                }
             }
             header("Location: index.php?url=admin_orders");
             exit();
@@ -158,5 +165,26 @@ class orderController
 
         $orders = $this->ordersModel->getAllOrders();
         include(__DIR__ . "/../../view/admin/admin_orders.php");
+    }
+    public function Admin_order_Detail()
+    {
+        if (!isset($_SESSION['RoleUser']) || $_SESSION['RoleUser'] != 1) {
+            header("Location: home");
+            exit();
+        }
+
+        if (!isset($_GET['id'])) {
+            header("Location: index.php?url=admin_orders");
+            exit();
+        }
+
+        $orderId = $_GET['id'];
+        $order = $this->ordersModel->getOrderById($orderId);
+        if (!$order) {
+            header("Location: index.php?url=admin_orders");
+            exit();
+        }
+        $items = $this->detailsModel->getDetailsByOrder($orderId);
+        include(__DIR__ . "/../../view/admin/Admin_order_Detail.php");
     }
 }

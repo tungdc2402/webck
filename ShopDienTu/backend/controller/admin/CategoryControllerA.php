@@ -13,7 +13,7 @@ class CategoryControllerA {
             session_start();
         }
         if (!isset($_SESSION['RoleUser']) || $_SESSION['RoleUser'] != 1) {
-            header("Location: index.php?url=login");
+            header("Location: login");
             exit();
         }
         $this->cateModel = new CategoryModel();
@@ -37,7 +37,7 @@ class CategoryControllerA {
                 $this->cateModel->insert($name);
             }
 
-            header("Location: index.php?url=admin_category");
+            header("Location: admin_category");
             exit();
         }
     }
@@ -46,7 +46,7 @@ class CategoryControllerA {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $this->cateModel->delete($id);
-            header("Location: index.php?url=admin_category");
+            header("Location: admin_category");
             exit();
         }
     }

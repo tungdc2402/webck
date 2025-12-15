@@ -144,7 +144,7 @@
             </div>
         <?php endif; ?>
 
-        <form class="login-form" action="index.php?url=loginPost" method="POST">
+        <form class="login-form" action="loginPost" method="POST">
             <div class="form-group">
                 <label for="phone">Số điện thoại</label>
                 <input type="tel" id="phone" name="PhoneNumberUser" placeholder="Nhập số điện thoại của bạn" required>
@@ -159,10 +159,10 @@
             <button type="submit" class="btn-login">Đăng nhập</button>
         </form>
 
-        <a href="#" class="forgot-password">Quên mật khẩu?</a>
+        <a href="forgot_password" class="forgot-password">Quên mật khẩu?</a>
 
         <p class="register-link">
-            Bạn chưa có tài khoản? <a href="index.php?url=register">Đăng ký ngay</a>
+            Bạn chưa có tài khoản? <a href="register">Đăng ký ngay</a>
         </p>
     </div>
 
