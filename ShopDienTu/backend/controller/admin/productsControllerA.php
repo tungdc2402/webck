@@ -111,12 +111,37 @@ class productsControllerA
             exit();
         }
     }
+    public function discountPage()
+    {
+        $products = $this->proController->getAllProducts(); // Lấy tất cả sản phẩm
+        include(__DIR__ . "/../../view/admin/admin_discount.php");
+    }
 
+    public function updateDiscount()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['id'];
+            $discount = max(0, min(90, (int)$_POST['discount'])); // Giới hạn 0-90%
+
+            $this->proController->updateDiscount($id, $discount);
+
+            // Có thể thêm thông báo thành công bằng session nếu muốn
+            $_SESSION['success'] = "Cập nhật giảm giá thành công!";
+            header("Location: index.php?url=admin_discount");
+            exit();
+        }
+    }
     public function run()
     {
         $action = $_GET['url'] ?? 'admin_shop';
 
         switch ($action) {
+            case 'admin_discount':
+                $this->discountPage();
+                break;
+            case 'admin_update_discount':
+                $this->updateDiscount();
+                break;
             case 'admin_orders':
                 $this->ordController->adminOrders();
                 break;

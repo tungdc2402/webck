@@ -11,7 +11,7 @@ session_start();
 $url = $_GET['url'] ?? 'home';
 $userRoutes = ['login', 'loginPost', 'register', 'registerPost', 'logout', 'checkout', 'place_order', 'my_orders', 'order_detail', 'aboutus', 'contact', 'send_reset_code', 'verify_code', 'submit_verify_code', 'reset_password', 'submit_new_password', 'my_account', 'update_profile', 'forgot_password'];
 $cartRoutes = ['cart', 'add_to_cart'];
-$adminRoutes = ['admin_shop', 'admin_create', 'admin_edit', 'admin_store', 'admin_delete', 'admin_category', 'admin_category_store', 'admin_category_delete', 'admin_reviews', 'admin_review_delete', 'admin_orders', 'Admin_order_Detail'];
+$adminRoutes = ['admin_shop', 'admin_create', 'admin_edit', 'admin_store', 'admin_delete', 'admin_category', 'admin_category_store', 'admin_category_delete', 'admin_reviews', 'admin_review_delete', 'admin_orders', 'Admin_order_Detail','admin_discount', 'admin_update_discount'];
 
 if (in_array($url, $userRoutes)) {
     require_once('controller/UserController.php');

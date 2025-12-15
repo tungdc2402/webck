@@ -23,11 +23,17 @@
     <link rel="stylesheet" href="../frontend/css/style.css">
     <link rel="stylesheet" href="../frontend/css/responsive.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    </head>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="../frontend/css/grid.css" />
     <link rel="stylesheet" href="../frontend/css/base.css" />
     <link rel="stylesheet" href="../frontend/css/main.css" />
@@ -41,23 +47,8 @@
 
 <body>
     <?php
-    include("model/connect.php"); // Đảm bảo đã kết nối DB
-    $limit = 8; // Giới hạn 5 sản phẩm/trang như yêu cầu
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    if ($page < 1) $page = 1;
-    $start = ($page - 1) * $limit;
-
-    // Đếm tổng sản phẩm để tính số trang (giả sử hiển thị tất cả sản phẩm, không phân theo danh mục)
-    $count_sql = "SELECT COUNT(*) AS total FROM products";
-    $count_result = mysqli_query($conn, $count_sql);
-    $count_row = mysqli_fetch_array($count_result);
-    $total_pages = ceil($count_row['total'] / $limit);
-
-    // Lấy sản phẩm cho trang hiện tại
-    $sql = "SELECT * FROM products LIMIT $start, $limit";
-    $products = mysqli_query($conn, $sql);
+    $limit = "5";
     ?>
-
     <div class="header-area">
         <div class="container">
             <div class="row">
@@ -74,7 +65,6 @@
             </div>
         </div>
     </div> <!-- End header area -->
-
     <div class="site-branding-area1">
         <div class="container1">
             <div class="row1">
@@ -95,9 +85,11 @@
                     </div>
                 </div>
                 <div class="header-right">
+                    <!-- <div class="col-sm-6"> -->
                     <div class="shopping-item">
                         <a href="cart.html">Cart<i class="fa fa-shopping-cart"></i> <span class="product-count">1</span></a>
                     </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -146,18 +138,19 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="single-shop-product">
                             <div class="product-upper">
-                                <img src="../frontend/img/<?php echo $row['ImageUrlProduct'] ?? $row['ImageProduct']; ?>" class="rounded product-img" alt="Hình ảnh sản phẩm">
+                                <img src="../frontend/img/<?php echo $row['ImageUrlProduct'] ?>" class="rounded product-img" alt="Hình ảnh sản phẩm">
                             </div>
                             <h2><a href=""><?php echo htmlspecialchars($row['NameProduct']); ?></a></h2>
                             <div class="product-carousel-price">
-                                <ins><?php echo number_format($row['PriceProduct']); ?>đ</ins>
-                                <!-- Nếu có giá cũ thì thêm <del> ở đây -->
+                                <ins>$99.00</ins> <del>$200.00</del>
                             </div>
                             <div class="product-option-shop">
-                                <form action='add_to_cart' method='POST' style='margin: 0; padding: 0;'>
+                                <form action='index.php?url=add_to_cart' method='POST' style='margin: 0; padding: 0;'>
+
                                     <input type='hidden' name='product_id' value='<?php echo $row['IDProduct']; ?>'>
+
                                     <button type='submit' class='add_to_cart_button'>
-                                        Giỏ hàng
+                                        Add to cart
                                     </button>
                                 </form>
                             </div>
@@ -165,30 +158,23 @@
                     </div>
                 <?php } ?>
             </div>
-
-            <!-- Phần phân trang động, giữ nguyên cấu trúc HTML và class bạn đã có -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-pagination text-center">
                         <nav>
                             <ul class="pagination">
-                                <!-- Nút Previous -->
-                                <li <?php echo ($page <= 1) ? 'class="disabled"' : ''; ?>>
-                                    <a href="<?php echo ($page > 1) ? '?page=' . ($page - 1) : '#'; ?>" aria-label="Previous">
+                                <li>
+                                    <a href="#" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-
-                                <!-- Các số trang -->
-                                <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
-                                    <li <?php echo ($i == $page) ? 'class="active"' : ''; ?>>
-                                        <a href="shoppage&page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                                    </li>
-                                <?php } ?>
-
-                                <!-- Nút Next -->
-                                <li <?php echo ($page >= $total_pages) ? 'class="disabled"' : ''; ?>>
-                                    <a href="<?php echo ($page < $total_pages) ? '?page=' . ($page + 1) : '#'; ?>" aria-label="Next">
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
@@ -199,8 +185,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer giữ nguyên hoàn toàn -->
     <div class="footer-top-area">
         <div class="container">
             <div class="row">
@@ -221,11 +205,11 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Thanh điều hướng </h2>
                         <ul>
-                            <li><a href="my_account.html">Tài khoản</a></li>
-                            <li><a href="#">Lịch sử mua hàng</a></li>
-                            <li><a href="#">Yêu thích</a></li>
-                            <li><a href="#">Liên hệ</a></li>
-                            <li><a href="index.html">Trang chủ</a></li>
+                            <li><a href="my_account.html">Tài khoản</a></li> <!-- filter -->
+                            <li><a href="#">Lịch sử mua hàng</a></li> <!-- filter -->
+                            <li><a href="#">Yêu thích</a></li> <!-- filter -->
+                            <li><a href="#">Liên hệ</a></li> <!-- filter -->
+                            <li><a href="index.html">Trang chủ</a></li> <!-- filter -->
                         </ul>
                     </div>
                 </div>
@@ -234,11 +218,11 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Danh mục</h2>
                         <ul>
-                            <li><a href="shop.html">LAPTOP</a></li>
-                            <li><a href="shop.html">Phụ Kiện </a></li>
-                            <li><a href="shop.html">TV - Điện Máy</a></li>
-                            <li><a href="shop.html">Đồng Hồ</a></li>
-                            <li><a href="shop.html">Hàng Cũ</a></li>
+                            <li><a href="shop.html">LAPTOP</a></li> <!-- filter -->
+                            <li><a href="shop.html">Phụ Kiện </a></li> <!-- filter -->
+                            <li><a href="shop.html">TV - Điện Máy</a></li> <!-- filter -->
+                            <li><a href="shop.html">Đồng Hồ</a></li> <!-- filter -->
+                            <li><a href="shop.html">Hàng Cũ</a></li> <!-- filter -->
                         </ul>
                     </div>
                 </div>
@@ -257,7 +241,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> <!-- End footer top area -->
 
     <div class="footer-bottom-area">
         <div class="container">
@@ -278,9 +262,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> <!-- End footer bottom area -->
+    <!-- Latest jQuery form server -->
 
     <div class="floating-contact-wrap">
+
         <a href="https://zalo.me/0705955589" target="_blank" class="contact-btn btn-zalo">
             <span class="zalo-text">Z</span>
             <div class="contact-tooltip">Chat Zalo</div>
@@ -293,14 +279,24 @@
             </svg>
             <div class="contact-tooltip">Chat Facebook</div>
         </a>
-    </div>
 
+    </div>
     <script src="https://code.jquery.com/jquery.min.js"></script>
+
+    <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- jQuery sticky menu -->
     <script src="../frontend/js/owl.carousel.min.js"></script>
     <script src="../frontend/js/jquery.sticky.js"></script>
+
+    <!-- jQuery easing -->
     <script src="../frontend/js/jquery.easing.1.3.min.js"></script>
+
+    <!-- Main Script -->
     <script src="../frontend/js/main.js"></script>
+
+    <!-- Slider -->
     <script type="text/javascript" src="../frontend/js/bxslider.min.js"></script>
     <script type="text/javascript" src="../frontend/js/script.slider.js"></script>
 </body>

@@ -346,12 +346,12 @@
             </p>
             <div class="cta-box__buttons">
               <a
-                href="https://lesybach.id.vn/products"
+                href="shoppage"
                 class="btn-cta btn-cta--primary">
                 <i class="fas fa-shopping-cart"></i> Mua Sắm Ngay
               </a>
               <a
-                href="https://lesybach.id.vn/contact"
+                href="contact"
                 class="btn-cta btn-cta--outline">
                 <i class="fas fa-phone"></i> Liên Hệ
               </a>
@@ -1173,6 +1173,7 @@
   }
 
   .cta-box__title {
+    font-family: "Raleway", sans-serif;
     font-size: 42px;
     font-weight: 800;
     color: var(--text-dark);

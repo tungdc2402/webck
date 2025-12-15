@@ -9,7 +9,17 @@ class productsModel
         $result = mysqli_query($conn, $sql);
         return $result;
     }
-
+    public function getProductsByFilter($start, $limit, $catId = 0)
+    {
+        include("connect.php");
+        $sql = "SELECT * FROM products";
+        // Nếu có catId thì thêm WHERE, không thì lấy hết
+        if ($catId > 0) {
+            $sql .= " WHERE IDCategory = " . (int)$catId;
+        }
+        $sql .= " ORDER BY IDProduct DESC LIMIT $start, $limit";
+        return mysqli_query($conn, $sql);
+    }
     public function get10LatestProducts()
     {
         include("connect.php");
@@ -20,11 +30,19 @@ class productsModel
         return $result;
     }
 
-    public function searchProducts($keyword)
+    public function searchProducts($keyword, $categoryId = 0)
     {
         include("connect.php");
         $safe_keyword = mysqli_real_escape_string($conn, $keyword);
+
         $sql = "SELECT * FROM products WHERE NameProduct LIKE '%$safe_keyword%'";
+
+        // Nếu có chọn danh mục (ID > 0) thì thêm điều kiện AND
+        if ($categoryId > 0) {
+            $safe_catId = (int)$categoryId;
+            $sql .= " AND IDCategory = '$safe_catId'";
+        }
+
         $result = mysqli_query($conn, $sql);
         return $result;
     }
@@ -69,7 +87,17 @@ class productsModel
         $sql = "DELETE FROM products WHERE IDProduct = '$id'";
         return mysqli_query($conn, $sql);
     }
-
+    public function countTotalProducts($catId = 0)
+    {
+        include("connect.php");
+        $sql = "SELECT COUNT(*) as total FROM products";
+        if ($catId > 0) {
+            $sql .= " WHERE IDCategory = " . (int)$catId;
+        }
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result);
+        return $row['total'];
+    }
     public function getReviewsByProductId($id)
     {
         include("connect.php");
@@ -163,5 +191,21 @@ class productsModel
             LIMIT $limit";
         $result = mysqli_query($conn, $sql);
         return $result;
+    }
+    public function updateDiscount($id, $discount)
+    {
+        include("connect.php");
+
+        $id = (int)$id;
+        $discount = (int)$discount;
+
+        $sql = "UPDATE products 
+            SET Discount = $discount 
+            WHERE IDProduct = $id";
+
+        $result = mysqli_query($conn, $sql);
+
+        // Trả về true nếu update thành công, false nếu thất bại
+        return $result !== false;
     }
 }

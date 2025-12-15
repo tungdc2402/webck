@@ -134,7 +134,7 @@
                                 </h2>
 
 
-                                <form action="https://lesybach.id.vn/contact" method="POST" class="contact-form">
+                                <form action="..." method="POST" class="contact-form">
                                     <input type="hidden" name="_token" value="og1ArW0zGHi7zmdUTSVRcopG6Y4aaoeYqN0X4wfU" autocomplete="off">
                                     <div class="form-row">
                                         <div class="form-col">

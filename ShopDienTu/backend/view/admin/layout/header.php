@@ -62,8 +62,8 @@
     <a href="admin_category" class="nav-link"><i class="fas fa-list"></i> Danh mục & Hãng</a>
     <a href="admin_orders" class="nav-link"><i class="fas fa-shopping-cart"></i> Đơn hàng</a>
     <a href="admin_reviews" class="nav-link"><i class="fas fa-users"></i> Khách hàng</a>
+    <a href="admin_discount" class="nav-link"><i class="fas fa-cog"></i> Sale</a>
     <a href="home" class="nav-link"><i class="fas fa-cog"></i>Vai Trò Khách</a>
-    <a href="#" class="nav-link"><i class="fas fa-cog"></i> Cấu hình</a>
     <a href="logout" class="nav-link text-danger" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất?');">
         <i class="fas fa-sign-out-alt"></i> Đăng xuất
     </a>

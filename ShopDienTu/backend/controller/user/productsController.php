@@ -3,9 +3,10 @@
 namespace controller\user;
 
 use productsModel;
+use CategoryModel;
 
 require_once(__DIR__ . "/../../model/productsModel.php");
-
+require_once(__DIR__ . "/../../model/CategoryModel.php");
 class productsController
 {
     public $proController;
@@ -15,9 +16,26 @@ class productsController
         $this->proController = new productsModel();
     }
 
-    public function shopPage()
-    {
-        $products = $this->proController->getAllProducts();
+       public function shopPage() {
+        // 1. Lấy tham số
+        $catId = isset($_GET['cat_id']) ? (int)$_GET['cat_id'] : 0;
+        $page  = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        if ($page < 1) $page = 1;
+        $limit = 8;
+        $start = ($page - 1) * $limit;
+
+        // 2. Lấy danh sách danh mục (để hiện nút bấm)
+        $catModel = new \CategoryModel();
+        $categories = $catModel->getAll();
+
+        // 3. Lấy sản phẩm theo bộ lọc
+        $products = $this->proController->getProductsByFilter($start, $limit, $catId);
+
+        // 4. Tính toán phân trang
+        $totalRecords = $this->proController->countTotalProducts($catId);
+        $total_pages = ceil($totalRecords / $limit);
+
+        // 5. Gọi View (File shop.php bạn gửi bên dưới)
         require_once(__DIR__ . "/../../view/user/shop.php");
     }
     private function loadTopSellingProducts()
@@ -50,13 +68,14 @@ class productsController
 
     public function search()
     {
-        if (isset($_GET['keyword'])) {
-            $keyword = $_GET['keyword'];
-            $products = $this->proController->searchProducts($keyword);
-            include(__DIR__ . "/../../view/user/viewSearch.php");
-        } else {
-            $this->shopPage();
-        }
+        $catModel = new \CategoryModel();
+        $categories = $catModel->getAll();
+
+        $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+        $catId = isset($_GET['cat_id']) ? (int)$_GET['cat_id'] : 0;
+
+        $products = $this->proController->searchProducts($keyword, $catId);
+        include(__DIR__ . "/../../view/user/viewSearch.php");
     }
 
 

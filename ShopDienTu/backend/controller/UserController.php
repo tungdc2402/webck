@@ -358,7 +358,6 @@ class UserController
         }
     }
 
-
     public function run()
     {
         $action = $_GET['url'] ?? 'home';

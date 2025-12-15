@@ -53,7 +53,7 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="my_account.html"><i class="fa fa-user"></i> Tài Khoản</a></li>
+                            <li><a href="my_account"><i class="fa fa-user"></i> Tài Khoản</a></li>
                             <li><a href="404.html"><i class="fa fa-heart"></i> Yêu Thích</a></li>
                             <li><a href="cart"><i class="fa fa-user"></i> Giỏ Hàng</a></li>
                             <li><a href="checkout"><i class="fa fa-user"></i> Thanh Toán</a></li>
@@ -598,5 +598,4 @@
         }
     </script>
 </body>
-
 </html>
